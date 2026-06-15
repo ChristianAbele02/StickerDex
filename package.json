@@ -5,13 +5,13 @@
   "description": "Self-hosted, open-source digital sticker album and tournament companion for the Panini-style FIFA World Cup 2026 collection.",
   "license": "MIT",
   "author": "Christian Abele",
-  "homepage": "https://github.com/christianabele02/stickerdex#readme",
+  "homepage": "https://github.com/christianabele02/StickerDex#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/christianabele02/stickerdex.git"
+    "url": "https://github.com/christianabele02/StickerDex.git"
   },
   "bugs": {
-    "url": "https://github.com/christianabele02/stickerdex/issues"
+    "url": "https://github.com/christianabele02/StickerDex/issues"
   },
   "keywords": [
     "world-cup-2026",

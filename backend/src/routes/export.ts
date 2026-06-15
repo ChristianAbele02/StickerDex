@@ -21,11 +21,11 @@ export async function exportRoutes(app: FastifyInstance): Promise<void> {
       if (format === 'csv') {
         return reply
           .header('Content-Type', 'text/csv; charset=utf-8')
-          .header('Content-Disposition', `attachment; filename="stickerdex-${filter}.csv"`)
+          .header('Content-Disposition', `attachment; filename="StickerDex-${filter}.csv"`)
           .send(toCsv(rows));
       }
       return reply
-        .header('Content-Disposition', `attachment; filename="stickerdex-${filter}.json"`)
+        .header('Content-Disposition', `attachment; filename="StickerDex-${filter}.json"`)
         .send({ filter, count: rows.length, rows });
     },
   );

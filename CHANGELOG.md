@@ -60,7 +60,7 @@ All notable changes to this project are documented here. The format is based on
   Windows too); added `dev:api` / `dev:web`.
 
 ### Initial release
-- Initial release of Stickerdex.
+- Initial release of StickerDex.
 - Booklet-style album UI with team pages, numbered slots, and foil shine.
 - One-click collecting with duplicate / swap tracking.
 - Live completion stats (overall + per team) and "packs needed" estimate.

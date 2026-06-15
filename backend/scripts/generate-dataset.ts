@@ -1,5 +1,5 @@
 /**
- * Generates the canonical Stickerdex catalog (`src/data/stickers.json`).
+ * Generates the canonical StickerDex catalog (`src/data/stickers.json`).
  *
  * The album structure is well-documented and reproduced faithfully here:
  *   - 48 national teams x 20 stickers (badge foil at 1, team photo at 13, rest players)

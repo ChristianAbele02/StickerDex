@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⚽ Stickerdex
+# ⚽ StickerDex
 
 **A self-hosted, open-source digital sticker album _and_ companion for the Panini™-style FIFA World Cup 2026 collection.**
 
@@ -9,7 +9,7 @@ in a booklet-style web app, then follow the whole tournament alongside it: the f
 schedule, live group standings, a knockout bracket, win-probability predictions, and a countdown
 to the next kick-off. All on your own machine.
 
-[![CI](https://github.com/christianabele02/stickerdex/actions/workflows/ci.yml/badge.svg)](https://github.com/christianabele02/stickerdex/actions/workflows/ci.yml)
+[![CI](https://github.com/christianabele02/StickerDex/actions/workflows/ci.yml/badge.svg)](https://github.com/christianabele02/StickerDex/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 ![Node](https://img.shields.io/badge/node-%3E%3D20-brightgreen)
 ![Self-hosted](https://img.shields.io/badge/self--hosted-Docker-blue)
@@ -23,7 +23,7 @@ to the next kick-off. All on your own machine.
 
 </div>
 
-> **Disclaimer** — Stickerdex is an independent, unofficial fan project. It is **not affiliated
+> **Disclaimer** — StickerDex is an independent, unofficial fan project. It is **not affiliated
 > with, endorsed by, or sponsored by Panini, FIFA, or Coca-Cola**. It ships **no copyrighted
 > artwork**: stickers are represented by designed code + name tiles. "World Cup" and team names
 > are used descriptively. See [Data & accuracy](#-data--accuracy).
@@ -80,8 +80,8 @@ to the next kick-off. All on your own machine.
 ## 🚀 Quick start (Docker)
 
 ```bash
-git clone https://github.com/christianabele02/stickerdex.git
-cd stickerdex
+git clone https://github.com/christianabele02/StickerDex.git
+cd StickerDex
 cp .env.example .env          # optional: set STICKERDEX_PASSWORD / WEB_PORT
 docker compose up -d --build
 ```
@@ -119,7 +119,7 @@ npm run lint                  # type-check both apps
 ## 🏗️ Architecture
 
 ```
-stickerdex/
+StickerDex/
 ├── backend/        Fastify + TypeScript REST API, SQLite (better-sqlite3)
 │   ├── scripts/generate-dataset.ts   builds the canonical sticker catalog (flags + players)
 │   ├── scripts/generate-checklist.ts fetches the real Panini code→player checklist
@@ -223,14 +223,14 @@ All via environment variables (see [`.env.example`](.env.example)):
 PRs welcome — especially sticker-data corrections. Read [CONTRIBUTING.md](CONTRIBUTING.md) and our
 [Code of Conduct](CODE_OF_CONDUCT.md).
 
-## 🧭 Why "Stickerdex"?
+## 🧭 Why "StickerDex"?
 
-A few names were considered before settling on **Stickerdex** ("sticker" + "-dex"): _Klebebuch_,
+A few names were considered before settling on **StickerDex** ("sticker" + "-dex"): _Klebebuch_,
 _FoilVault_, and _Albumania_. The name deliberately avoids trademarked brands.
 
 ## 🙏 Credits & data sources
 
-Stickerdex stands on open data. Huge thanks to:
+StickerDex stands on open data. Huge thanks to:
 
 | Source | Used for | License |
 | ------ | -------- | ------- |
@@ -238,7 +238,7 @@ Stickerdex stands on open data. Huge thanks to:
 | [Wikipedia — *2026 FIFA World Cup squads*](https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_squads) | Player squads (position, club, caps, goals) | CC BY-SA 4.0 |
 | [Football Cartophilic Info Exchange](https://cartophilic-info-exch.blogspot.com/) & [paniniwm2026sticker.com](https://paniniwm2026sticker.com/) | Sticker checklist (code → player) | Factual checklist data |
 
-All data is **factual reference information** (fixtures, names, numbers) — Stickerdex ships **no
+All data is **factual reference information** (fixtures, names, numbers) — StickerDex ships **no
 Panini artwork or copyrighted imagery**. Trademarks belong to their respective owners; see the
 disclaimer at the top.
 

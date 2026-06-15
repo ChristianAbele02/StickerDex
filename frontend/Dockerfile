@@ -1,4 +1,4 @@
-# Stickerdex web UI — build with Vite, serve static files via nginx.
+# StickerDex web UI — build with Vite, serve static files via nginx.
 FROM node:20-bookworm-slim AS build
 WORKDIR /app
 COPY frontend/package.json ./

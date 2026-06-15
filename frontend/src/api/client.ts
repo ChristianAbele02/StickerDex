@@ -1,4 +1,4 @@
-/** Thin fetch wrapper around the Stickerdex REST API. */
+/** Thin fetch wrapper around the StickerDex REST API. */
 import type {
   CollectionMap,
   Match,

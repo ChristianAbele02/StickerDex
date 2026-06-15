@@ -1,4 +1,4 @@
-# Stickerdex — one command to self-host the full stack:  docker compose up -d
+# StickerDex — one command to self-host the full stack:  docker compose up -d
 services:
   api:
     build:

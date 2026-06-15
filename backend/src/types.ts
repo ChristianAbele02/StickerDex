@@ -1,5 +1,5 @@
 /**
- * Shared domain types for Stickerdex.
+ * Shared domain types for StickerDex.
  *
  * A "sticker" is one slot in the album, identified by its Panini-style code
  * (e.g. `ARG17`). The catalog (all stickers) is static reference data; the

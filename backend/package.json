@@ -2,7 +2,7 @@
   "name": "@stickerdex/backend",
   "version": "0.1.0",
   "private": true,
-  "description": "Stickerdex REST API (Fastify + SQLite).",
+  "description": "StickerDex REST API (Fastify + SQLite).",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.js",

@@ -18,10 +18,10 @@ async function main(): Promise<void> {
 
   const app = await buildApp({ db, logger: true });
   await app.listen({ port: PORT, host: '0.0.0.0' });
-  console.log(`Stickerdex API listening on http://0.0.0.0:${PORT}`);
+  console.log(`StickerDex API listening on http://0.0.0.0:${PORT}`);
 }
 
 main().catch((err) => {
-  console.error('Failed to start Stickerdex API:', err);
+  console.error('Failed to start StickerDex API:', err);
   process.exit(1);
 });

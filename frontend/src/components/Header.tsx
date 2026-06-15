@@ -69,7 +69,7 @@ export function Header({
           <div className="flex items-center gap-2">
             <span className="text-2xl">⚽</span>
             <div>
-              <h1 className="text-lg font-extrabold tracking-tight">Stickerdex</h1>
+              <h1 className="text-lg font-extrabold tracking-tight">StickerDex</h1>
               <p className="text-[11px] text-slate-500 dark:text-slate-400">
                 World Cup 2026 Companion
               </p>

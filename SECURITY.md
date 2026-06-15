@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-Stickerdex is pre-1.0; security fixes are applied to the latest `main`.
+StickerDex is pre-1.0; security fixes are applied to the latest `main`.
 
 ## Reporting a vulnerability
 
@@ -16,7 +16,7 @@ within a few days.
 
 ## Self-hosting notes
 
-- Stickerdex is designed for **personal / trusted-network** use.
+- StickerDex is designed for **personal / trusted-network** use.
 - If you expose it to the internet, **set `STICKERDEX_PASSWORD` and a strong `STICKERDEX_SECRET`**,
   and put it behind HTTPS (e.g. a reverse proxy such as Caddy, Traefik, or nginx).
 - The password gates **write** operations only; read endpoints (your catalog and collection

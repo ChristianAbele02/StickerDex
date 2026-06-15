@@ -54,7 +54,7 @@ export interface Player {
 async function api(params: Record<string, string>): Promise<unknown> {
   const url = new URL(API);
   url.search = new URLSearchParams({ format: 'json', ...params }).toString();
-  const res = await fetch(url, { headers: { 'User-Agent': 'Stickerdex/0.1 (self-hosted album)' } });
+  const res = await fetch(url, { headers: { 'User-Agent': 'StickerDex/0.1 (self-hosted album)' } });
   if (!res.ok) throw new Error(`Wikipedia API ${res.status} for ${params.page ?? params.action}`);
   return res.json();
 }

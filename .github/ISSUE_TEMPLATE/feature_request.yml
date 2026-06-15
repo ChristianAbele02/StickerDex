@@ -1,5 +1,5 @@
 name: ✨ Feature request
-description: Suggest an idea for Stickerdex
+description: Suggest an idea for StickerDex
 labels: [enhancement]
 body:
   - type: textarea

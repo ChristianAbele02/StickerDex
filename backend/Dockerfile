@@ -1,4 +1,4 @@
-# Stickerdex API — Fastify + SQLite (better-sqlite3 needs a native build toolchain).
+# StickerDex API — Fastify + SQLite (better-sqlite3 needs a native build toolchain).
 FROM node:20-bookworm-slim
 
 WORKDIR /app

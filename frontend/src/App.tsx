@@ -10,14 +10,14 @@ import { TeamsView } from './pages/TeamsView.tsx';
 import { ScheduleView } from './pages/ScheduleView.tsx';
 import { StandingsView } from './pages/StandingsView.tsx';
 import { BracketView } from './pages/BracketView.tsx';
-import { useStickerdex } from './hooks/useStickerdex.ts';
+import { useStickerDex } from './hooks/useStickerDex.ts';
 import { useTournament } from './hooks/useTournament.ts';
 import { useTheme } from './hooks/useTheme.ts';
 import { useFavorite } from './hooks/useFavorite.ts';
 import { progressFor } from './lib/stats.ts';
 
 export default function App() {
-  const { loading, error, stickers, teams, collection, toggle, adjust } = useStickerdex();
+  const { loading, error, stickers, teams, collection, toggle, adjust } = useStickerDex();
   const tournament = useTournament();
   const [theme, toggleTheme] = useTheme();
   const [favorite, chooseFavorite] = useFavorite();
@@ -153,7 +153,7 @@ export default function App() {
       </main>
 
       <footer className="mx-auto max-w-6xl px-4 py-8 text-center text-xs text-slate-400">
-        Stickerdex · self-hosted & open source · not affiliated with Panini or FIFA · schedule data
+        StickerDex · self-hosted & open source · not affiliated with Panini or FIFA · schedule data
         from openfootball (CC0)
       </footer>
     </div>

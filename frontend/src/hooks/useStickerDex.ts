@@ -6,7 +6,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { api } from '../api/client.ts';
 import type { CollectionMap, Sticker, Team } from '../types.ts';
 
-export interface StickerdexState {
+export interface StickerDexState {
   loading: boolean;
   error: string | null;
   stickers: Sticker[];
@@ -17,7 +17,7 @@ export interface StickerdexState {
   adjust: (code: string, delta: number) => void;
 }
 
-export function useStickerdex(): StickerdexState {
+export function useStickerDex(): StickerDexState {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [stickers, setStickers] = useState<Sticker[]>([]);

@@ -2,7 +2,7 @@
   "name": "@stickerdex/frontend",
   "version": "0.1.0",
   "private": true,
-  "description": "Stickerdex web UI (React + Vite).",
+  "description": "StickerDex web UI (React + Vite).",
   "license": "MIT",
   "type": "module",
   "scripts": {

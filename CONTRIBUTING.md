@@ -1,4 +1,4 @@
-# Contributing to Stickerdex
+# Contributing to StickerDex
 
 Thanks for helping out! Whether it's code, design, or correcting sticker data, contributions are
 very welcome.
