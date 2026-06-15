@@ -1,0 +1,434 @@
+[
+  {
+    "code": "CZE",
+    "name": "Czech Republic",
+    "group": "A",
+    "colors": {
+      "primary": "#11457e",
+      "secondary": "#d7141a"
+    }
+  },
+  {
+    "code": "MEX",
+    "name": "Mexico",
+    "group": "A",
+    "colors": {
+      "primary": "#006847",
+      "secondary": "#ce1126"
+    }
+  },
+  {
+    "code": "RSA",
+    "name": "South Africa",
+    "group": "A",
+    "colors": {
+      "primary": "#007749",
+      "secondary": "#ffb81c"
+    }
+  },
+  {
+    "code": "KOR",
+    "name": "South Korea",
+    "group": "A",
+    "colors": {
+      "primary": "#cd2e3a",
+      "secondary": "#0047a0"
+    }
+  },
+  {
+    "code": "BIH",
+    "name": "Bosnia & Herzegovina",
+    "group": "B",
+    "colors": {
+      "primary": "#002395",
+      "secondary": "#ffec00"
+    }
+  },
+  {
+    "code": "CAN",
+    "name": "Canada",
+    "group": "B",
+    "colors": {
+      "primary": "#d52b1e",
+      "secondary": "#ffffff"
+    }
+  },
+  {
+    "code": "QAT",
+    "name": "Qatar",
+    "group": "B",
+    "colors": {
+      "primary": "#8a1538",
+      "secondary": "#ffffff"
+    }
+  },
+  {
+    "code": "SUI",
+    "name": "Switzerland",
+    "group": "B",
+    "colors": {
+      "primary": "#d52b1e",
+      "secondary": "#ffffff"
+    }
+  },
+  {
+    "code": "BRA",
+    "name": "Brazil",
+    "group": "C",
+    "colors": {
+      "primary": "#ffdf00",
+      "secondary": "#009b3a"
+    }
+  },
+  {
+    "code": "HAI",
+    "name": "Haiti",
+    "group": "C",
+    "colors": {
+      "primary": "#00209f",
+      "secondary": "#d21034"
+    }
+  },
+  {
+    "code": "MAR",
+    "name": "Morocco",
+    "group": "C",
+    "colors": {
+      "primary": "#c1272d",
+      "secondary": "#006233"
+    }
+  },
+  {
+    "code": "SCO",
+    "name": "Scotland",
+    "group": "C",
+    "colors": {
+      "primary": "#0065bf",
+      "secondary": "#ffffff"
+    }
+  },
+  {
+    "code": "AUS",
+    "name": "Australia",
+    "group": "D",
+    "colors": {
+      "primary": "#00843d",
+      "secondary": "#ffcd00"
+    }
+  },
+  {
+    "code": "PAR",
+    "name": "Paraguay",
+    "group": "D",
+    "colors": {
+      "primary": "#d52b1e",
+      "secondary": "#0038a8"
+    }
+  },
+  {
+    "code": "TUR",
+    "name": "Turkey",
+    "group": "D",
+    "colors": {
+      "primary": "#e30a17",
+      "secondary": "#ffffff"
+    }
+  },
+  {
+    "code": "USA",
+    "name": "USA",
+    "group": "D",
+    "colors": {
+      "primary": "#0a3161",
+      "secondary": "#b31942"
+    }
+  },
+  {
+    "code": "CUW",
+    "name": "Curaçao",
+    "group": "E",
+    "colors": {
+      "primary": "#002b7f",
+      "secondary": "#f9d616"
+    }
+  },
+  {
+    "code": "ECU",
+    "name": "Ecuador",
+    "group": "E",
+    "colors": {
+      "primary": "#ffd100",
+      "secondary": "#0072ce"
+    }
+  },
+  {
+    "code": "GER",
+    "name": "Germany",
+    "group": "E",
+    "colors": {
+      "primary": "#000000",
+      "secondary": "#dd0000"
+    }
+  },
+  {
+    "code": "CIV",
+    "name": "Ivory Coast",
+    "group": "E",
+    "colors": {
+      "primary": "#f77f00",
+      "secondary": "#009e60"
+    }
+  },
+  {
+    "code": "JPN",
+    "name": "Japan",
+    "group": "F",
+    "colors": {
+      "primary": "#000091",
+      "secondary": "#bc002d"
+    }
+  },
+  {
+    "code": "NED",
+    "name": "Netherlands",
+    "group": "F",
+    "colors": {
+      "primary": "#ae1c28",
+      "secondary": "#21468b"
+    }
+  },
+  {
+    "code": "SWE",
+    "name": "Sweden",
+    "group": "F",
+    "colors": {
+      "primary": "#006aa7",
+      "secondary": "#fecc00"
+    }
+  },
+  {
+    "code": "TUN",
+    "name": "Tunisia",
+    "group": "F",
+    "colors": {
+      "primary": "#e70013",
+      "secondary": "#ffffff"
+    }
+  },
+  {
+    "code": "BEL",
+    "name": "Belgium",
+    "group": "G",
+    "colors": {
+      "primary": "#000000",
+      "secondary": "#fdda24"
+    }
+  },
+  {
+    "code": "EGY",
+    "name": "Egypt",
+    "group": "G",
+    "colors": {
+      "primary": "#ce1126",
+      "secondary": "#000000"
+    }
+  },
+  {
+    "code": "IRN",
+    "name": "Iran",
+    "group": "G",
+    "colors": {
+      "primary": "#239f40",
+      "secondary": "#da0000"
+    }
+  },
+  {
+    "code": "NZL",
+    "name": "New Zealand",
+    "group": "G",
+    "colors": {
+      "primary": "#000000",
+      "secondary": "#ffffff"
+    }
+  },
+  {
+    "code": "CPV",
+    "name": "Cape Verde",
+    "group": "H",
+    "colors": {
+      "primary": "#003893",
+      "secondary": "#cf2027"
+    }
+  },
+  {
+    "code": "KSA",
+    "name": "Saudi Arabia",
+    "group": "H",
+    "colors": {
+      "primary": "#006c35",
+      "secondary": "#ffffff"
+    }
+  },
+  {
+    "code": "ESP",
+    "name": "Spain",
+    "group": "H",
+    "colors": {
+      "primary": "#aa151b",
+      "secondary": "#f1bf00"
+    }
+  },
+  {
+    "code": "URU",
+    "name": "Uruguay",
+    "group": "H",
+    "colors": {
+      "primary": "#5cbfeb",
+      "secondary": "#001489"
+    }
+  },
+  {
+    "code": "FRA",
+    "name": "France",
+    "group": "I",
+    "colors": {
+      "primary": "#0055a4",
+      "secondary": "#ef4135"
+    }
+  },
+  {
+    "code": "IRQ",
+    "name": "Iraq",
+    "group": "I",
+    "colors": {
+      "primary": "#007a3d",
+      "secondary": "#ce1126"
+    }
+  },
+  {
+    "code": "NOR",
+    "name": "Norway",
+    "group": "I",
+    "colors": {
+      "primary": "#ba0c2f",
+      "secondary": "#00205b"
+    }
+  },
+  {
+    "code": "SEN",
+    "name": "Senegal",
+    "group": "I",
+    "colors": {
+      "primary": "#00853f",
+      "secondary": "#fdef42"
+    }
+  },
+  {
+    "code": "ALG",
+    "name": "Algeria",
+    "group": "J",
+    "colors": {
+      "primary": "#006233",
+      "secondary": "#ffffff"
+    }
+  },
+  {
+    "code": "ARG",
+    "name": "Argentina",
+    "group": "J",
+    "colors": {
+      "primary": "#75aadb",
+      "secondary": "#ffffff"
+    }
+  },
+  {
+    "code": "AUT",
+    "name": "Austria",
+    "group": "J",
+    "colors": {
+      "primary": "#ed2939",
+      "secondary": "#ffffff"
+    }
+  },
+  {
+    "code": "JOR",
+    "name": "Jordan",
+    "group": "J",
+    "colors": {
+      "primary": "#007a3d",
+      "secondary": "#ce1126"
+    }
+  },
+  {
+    "code": "COL",
+    "name": "Colombia",
+    "group": "K",
+    "colors": {
+      "primary": "#fcd116",
+      "secondary": "#003893"
+    }
+  },
+  {
+    "code": "COD",
+    "name": "DR Congo",
+    "group": "K",
+    "colors": {
+      "primary": "#007fff",
+      "secondary": "#f7d618"
+    }
+  },
+  {
+    "code": "POR",
+    "name": "Portugal",
+    "group": "K",
+    "colors": {
+      "primary": "#006600",
+      "secondary": "#ff0000"
+    }
+  },
+  {
+    "code": "UZB",
+    "name": "Uzbekistan",
+    "group": "K",
+    "colors": {
+      "primary": "#1eb53a",
+      "secondary": "#0099b5"
+    }
+  },
+  {
+    "code": "CRO",
+    "name": "Croatia",
+    "group": "L",
+    "colors": {
+      "primary": "#ff0000",
+      "secondary": "#171796"
+    }
+  },
+  {
+    "code": "ENG",
+    "name": "England",
+    "group": "L",
+    "colors": {
+      "primary": "#ffffff",
+      "secondary": "#ce1124"
+    }
+  },
+  {
+    "code": "GHA",
+    "name": "Ghana",
+    "group": "L",
+    "colors": {
+      "primary": "#006b3f",
+      "secondary": "#fcd116"
+    }
+  },
+  {
+    "code": "PAN",
+    "name": "Panama",
+    "group": "L",
+    "colors": {
+      "primary": "#005293",
+      "secondary": "#d21034"
+    }
+  }
+]

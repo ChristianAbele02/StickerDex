@@ -1,0 +1,114 @@
+[
+  {
+    "city": "Vancouver",
+    "stadium": "BC Place",
+    "country": "ca",
+    "timezone": "UTC-7",
+    "capacity": 54000
+  },
+  {
+    "city": "Seattle",
+    "stadium": "Lumen Field",
+    "country": "us",
+    "timezone": "UTC-7",
+    "capacity": 69000
+  },
+  {
+    "city": "San Francisco Bay Area (Santa Clara)",
+    "stadium": "Levi's Stadium",
+    "country": "us",
+    "timezone": "UTC-7",
+    "capacity": 71000
+  },
+  {
+    "city": "Los Angeles (Inglewood)",
+    "stadium": "SoFi Stadium",
+    "country": "us",
+    "timezone": "UTC-7",
+    "capacity": 70000
+  },
+  {
+    "city": "Guadalajara (Zapopan)",
+    "stadium": "Estadio Akron",
+    "country": "mx",
+    "timezone": "UTC-6",
+    "capacity": 48000
+  },
+  {
+    "city": "Mexico City",
+    "stadium": "Estadio Azteca",
+    "country": "mx",
+    "timezone": "UTC-6",
+    "capacity": 83000
+  },
+  {
+    "city": "Monterrey (Guadalupe)",
+    "stadium": "Estadio BBVA",
+    "country": "mx",
+    "timezone": "UTC-6",
+    "capacity": 53500
+  },
+  {
+    "city": "Houston",
+    "stadium": "NRG Stadium",
+    "country": "us",
+    "timezone": "UTC-5",
+    "capacity": 72000
+  },
+  {
+    "city": "Dallas (Arlington)",
+    "stadium": "AT&T Stadium",
+    "country": "us",
+    "timezone": "UTC-5",
+    "capacity": 94000
+  },
+  {
+    "city": "Kansas City",
+    "stadium": "Arrowhead Stadium",
+    "country": "us",
+    "timezone": "UTC-5",
+    "capacity": 73000
+  },
+  {
+    "city": "Atlanta",
+    "stadium": "Mercedes-Benz Stadium",
+    "country": "us",
+    "timezone": "UTC-4",
+    "capacity": 75000
+  },
+  {
+    "city": "Miami (Miami Gardens)",
+    "stadium": "Hard Rock Stadium",
+    "country": "us",
+    "timezone": "UTC-4",
+    "capacity": 65000
+  },
+  {
+    "city": "Toronto",
+    "stadium": "BMO Field",
+    "country": "ca",
+    "timezone": "UTC-4",
+    "capacity": 45000
+  },
+  {
+    "city": "Boston (Foxborough)",
+    "stadium": "Gillette Stadium",
+    "country": "us",
+    "timezone": "UTC-4",
+    "capacity": 65000
+  },
+  {
+    "city": "Philadelphia",
+    "stadium": "Lincoln Financial Field",
+    "country": "us",
+    "timezone": "UTC-4",
+    "capacity": 69000
+  },
+  {
+    "city": "New York/New Jersey (East Rutherford)",
+    "stadium": "MetLife Stadium",
+    "country": "us",
+    "timezone": "UTC-4",
+    "capacity": 82500
+  }
+]

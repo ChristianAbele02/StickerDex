@@ -1,0 +1,25 @@
+name: 🏷️ Sticker data correction
+description: Fix or add a player name, position, team group, or color
+labels: [data]
+body:
+  - type: input
+    id: code
+    attributes:
+      label: Sticker code(s)
+      placeholder: e.g. ARG10, BRA3-BRA12
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Correct value
+      placeholder: 'ARG10 = Paulo Dybala (Forward)'
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source
+      description: Official checklist / squad list URL so we can verify.
+    validations:
+      required: true

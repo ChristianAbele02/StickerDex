@@ -1,0 +1,36 @@
+# Stickerdex — one command to self-host the full stack:  docker compose up -d
+services:
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    image: stickerdex-api
+    restart: unless-stopped
+    environment:
+      API_PORT: 3001
+      DATABASE_PATH: /app/data/stickerdex.db
+      # Set a password to require login for changes (leave empty for open mode).
+      STICKERDEX_PASSWORD: ${STICKERDEX_PASSWORD:-}
+      STICKERDEX_SECRET: ${STICKERDEX_SECRET:-change-me-to-a-long-random-string}
+    volumes:
+      - stickerdex-data:/app/data
+    healthcheck:
+      test: ['CMD', 'node', '-e', "fetch('http://localhost:3001/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+  web:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    image: stickerdex-web
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - '${WEB_PORT:-8080}:80'
+
+volumes:
+  stickerdex-data:

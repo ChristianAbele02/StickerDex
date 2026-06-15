@@ -1,0 +1,47 @@
+{
+  "name": "stickerdex",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Self-hosted, open-source digital sticker album and tournament companion for the Panini-style FIFA World Cup 2026 collection.",
+  "license": "MIT",
+  "author": "Christian Abele",
+  "homepage": "https://github.com/christianabele02/stickerdex#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/christianabele02/stickerdex.git"
+  },
+  "bugs": {
+    "url": "https://github.com/christianabele02/stickerdex/issues"
+  },
+  "keywords": [
+    "world-cup-2026",
+    "panini",
+    "sticker-album",
+    "self-hosted",
+    "football",
+    "soccer",
+    "fastify",
+    "react",
+    "typescript",
+    "sqlite"
+  ],
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c blue,magenta \"npm run dev --workspace=backend\" \"npm run dev --workspace=frontend\"",
+    "dev:api": "npm run dev --workspace=backend",
+    "dev:web": "npm run dev --workspace=frontend",
+    "build": "npm run build --workspace=backend && npm run build --workspace=frontend",
+    "test": "npm run test --workspace=backend && npm run test --workspace=frontend",
+    "lint": "npm run lint --workspace=backend && npm run lint --workspace=frontend",
+    "generate-dataset": "npm run generate-dataset --workspace=backend"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.3"
+  }
+}

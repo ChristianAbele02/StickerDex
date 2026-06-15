@@ -1,0 +1,768 @@
+[
+  {
+    "teamCode": "MEX",
+    "teamName": "Mexico",
+    "groupName": "A",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#006847",
+      "secondary": "#ce1126",
+      "flag": [
+        "#006847",
+        "#ffffff",
+        "#ce1126"
+      ]
+    }
+  },
+  {
+    "teamCode": "RSA",
+    "teamName": "South Africa",
+    "groupName": "A",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#007749",
+      "secondary": "#ffb81c",
+      "flag": [
+        "#007749",
+        "#ffb81c",
+        "#de3831",
+        "#002395",
+        "#000000"
+      ]
+    }
+  },
+  {
+    "teamCode": "KOR",
+    "teamName": "South Korea",
+    "groupName": "A",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#cd2e3a",
+      "secondary": "#0047a0",
+      "flag": [
+        "#ffffff",
+        "#cd2e3a",
+        "#0047a0"
+      ]
+    }
+  },
+  {
+    "teamCode": "CZE",
+    "teamName": "Czechia",
+    "groupName": "A",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#11457e",
+      "secondary": "#d7141a",
+      "flag": [
+        "#11457e",
+        "#ffffff",
+        "#d7141a"
+      ]
+    }
+  },
+  {
+    "teamCode": "CAN",
+    "teamName": "Canada",
+    "groupName": "B",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#d52b1e",
+      "secondary": "#ffffff",
+      "flag": [
+        "#d52b1e",
+        "#ffffff",
+        "#d52b1e"
+      ]
+    }
+  },
+  {
+    "teamCode": "BIH",
+    "teamName": "Bosnia & Herzegovina",
+    "groupName": "B",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#002395",
+      "secondary": "#ffec00",
+      "flag": [
+        "#002395",
+        "#ffec00",
+        "#ffffff"
+      ]
+    }
+  },
+  {
+    "teamCode": "QAT",
+    "teamName": "Qatar",
+    "groupName": "B",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#8a1538",
+      "secondary": "#ffffff",
+      "flag": [
+        "#8a1538",
+        "#ffffff"
+      ]
+    }
+  },
+  {
+    "teamCode": "SUI",
+    "teamName": "Switzerland",
+    "groupName": "B",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#d52b1e",
+      "secondary": "#ffffff",
+      "flag": [
+        "#d52b1e",
+        "#ffffff"
+      ]
+    }
+  },
+  {
+    "teamCode": "BRA",
+    "teamName": "Brazil",
+    "groupName": "C",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#ffdf00",
+      "secondary": "#009b3a",
+      "flag": [
+        "#009b3a",
+        "#ffdf00",
+        "#002776"
+      ]
+    }
+  },
+  {
+    "teamCode": "MAR",
+    "teamName": "Morocco",
+    "groupName": "C",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#c1272d",
+      "secondary": "#006233",
+      "flag": [
+        "#c1272d",
+        "#006233"
+      ]
+    }
+  },
+  {
+    "teamCode": "HAI",
+    "teamName": "Haiti",
+    "groupName": "C",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#00209f",
+      "secondary": "#d21034",
+      "flag": [
+        "#00209f",
+        "#d21034"
+      ]
+    }
+  },
+  {
+    "teamCode": "SCO",
+    "teamName": "Scotland",
+    "groupName": "C",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#0065bf",
+      "secondary": "#ffffff",
+      "flag": [
+        "#0065bf",
+        "#ffffff"
+      ]
+    }
+  },
+  {
+    "teamCode": "USA",
+    "teamName": "United States",
+    "groupName": "D",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#0a3161",
+      "secondary": "#b31942",
+      "flag": [
+        "#b22234",
+        "#ffffff",
+        "#b22234",
+        "#3c3b6e"
+      ]
+    }
+  },
+  {
+    "teamCode": "PAR",
+    "teamName": "Paraguay",
+    "groupName": "D",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#d52b1e",
+      "secondary": "#0038a8",
+      "flag": [
+        "#d52b1e",
+        "#ffffff",
+        "#0038a8"
+      ]
+    }
+  },
+  {
+    "teamCode": "AUS",
+    "teamName": "Australia",
+    "groupName": "D",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#00843d",
+      "secondary": "#ffcd00",
+      "flag": [
+        "#0a1f5e",
+        "#0a1f5e",
+        "#ffffff",
+        "#e4002b"
+      ]
+    }
+  },
+  {
+    "teamCode": "TUR",
+    "teamName": "Türkiye",
+    "groupName": "D",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#e30a17",
+      "secondary": "#ffffff",
+      "flag": [
+        "#e30a17",
+        "#ffffff"
+      ]
+    }
+  },
+  {
+    "teamCode": "GER",
+    "teamName": "Germany",
+    "groupName": "E",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#000000",
+      "secondary": "#dd0000",
+      "flag": [
+        "#000000",
+        "#dd0000",
+        "#ffce00"
+      ]
+    }
+  },
+  {
+    "teamCode": "CUW",
+    "teamName": "Curaçao",
+    "groupName": "E",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#002b7f",
+      "secondary": "#f9d616",
+      "flag": [
+        "#002b7f",
+        "#f9d616",
+        "#ffffff"
+      ]
+    }
+  },
+  {
+    "teamCode": "CIV",
+    "teamName": "Côte d'Ivoire",
+    "groupName": "E",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#f77f00",
+      "secondary": "#009e60",
+      "flag": [
+        "#f77f00",
+        "#ffffff",
+        "#009e60"
+      ]
+    }
+  },
+  {
+    "teamCode": "ECU",
+    "teamName": "Ecuador",
+    "groupName": "E",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#ffd100",
+      "secondary": "#0072ce",
+      "flag": [
+        "#ffd100",
+        "#0072ce",
+        "#ef3340"
+      ]
+    }
+  },
+  {
+    "teamCode": "NED",
+    "teamName": "Netherlands",
+    "groupName": "F",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#ae1c28",
+      "secondary": "#21468b",
+      "flag": [
+        "#ae1c28",
+        "#ffffff",
+        "#21468b"
+      ]
+    }
+  },
+  {
+    "teamCode": "JPN",
+    "teamName": "Japan",
+    "groupName": "F",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#000091",
+      "secondary": "#bc002d",
+      "flag": [
+        "#ffffff",
+        "#bc002d"
+      ]
+    }
+  },
+  {
+    "teamCode": "SWE",
+    "teamName": "Sweden",
+    "groupName": "F",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#006aa7",
+      "secondary": "#fecc00",
+      "flag": [
+        "#006aa7",
+        "#fecc00"
+      ]
+    }
+  },
+  {
+    "teamCode": "TUN",
+    "teamName": "Tunisia",
+    "groupName": "F",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#e70013",
+      "secondary": "#ffffff",
+      "flag": [
+        "#e70013",
+        "#ffffff"
+      ]
+    }
+  },
+  {
+    "teamCode": "BEL",
+    "teamName": "Belgium",
+    "groupName": "G",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#000000",
+      "secondary": "#fdda24",
+      "flag": [
+        "#000000",
+        "#fdda24",
+        "#ef3340"
+      ]
+    }
+  },
+  {
+    "teamCode": "EGY",
+    "teamName": "Egypt",
+    "groupName": "G",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#ce1126",
+      "secondary": "#000000",
+      "flag": [
+        "#ce1126",
+        "#ffffff",
+        "#000000"
+      ]
+    }
+  },
+  {
+    "teamCode": "IRN",
+    "teamName": "Iran",
+    "groupName": "G",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#239f40",
+      "secondary": "#da0000",
+      "flag": [
+        "#239f40",
+        "#ffffff",
+        "#da0000"
+      ]
+    }
+  },
+  {
+    "teamCode": "NZL",
+    "teamName": "New Zealand",
+    "groupName": "G",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#000000",
+      "secondary": "#ffffff",
+      "flag": [
+        "#00247d",
+        "#00247d",
+        "#00247d",
+        "#c8102e"
+      ]
+    }
+  },
+  {
+    "teamCode": "ESP",
+    "teamName": "Spain",
+    "groupName": "H",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#aa151b",
+      "secondary": "#f1bf00",
+      "flag": [
+        "#aa151b",
+        "#f1bf00",
+        "#aa151b"
+      ]
+    }
+  },
+  {
+    "teamCode": "CPV",
+    "teamName": "Cape Verde",
+    "groupName": "H",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#003893",
+      "secondary": "#cf2027",
+      "flag": [
+        "#003893",
+        "#ffffff",
+        "#cf2027"
+      ]
+    }
+  },
+  {
+    "teamCode": "KSA",
+    "teamName": "Saudi Arabia",
+    "groupName": "H",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#006c35",
+      "secondary": "#ffffff",
+      "flag": [
+        "#006c35",
+        "#ffffff"
+      ]
+    }
+  },
+  {
+    "teamCode": "URU",
+    "teamName": "Uruguay",
+    "groupName": "H",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#5cbfeb",
+      "secondary": "#001489",
+      "flag": [
+        "#0038a8",
+        "#ffffff",
+        "#5cbfeb"
+      ]
+    }
+  },
+  {
+    "teamCode": "FRA",
+    "teamName": "France",
+    "groupName": "I",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#0055a4",
+      "secondary": "#ef4135",
+      "flag": [
+        "#0055a4",
+        "#ffffff",
+        "#ef4135"
+      ]
+    }
+  },
+  {
+    "teamCode": "SEN",
+    "teamName": "Senegal",
+    "groupName": "I",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#00853f",
+      "secondary": "#fdef42",
+      "flag": [
+        "#00853f",
+        "#fdef42",
+        "#e31b23"
+      ]
+    }
+  },
+  {
+    "teamCode": "IRQ",
+    "teamName": "Iraq",
+    "groupName": "I",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#007a3d",
+      "secondary": "#ce1126",
+      "flag": [
+        "#ce1126",
+        "#ffffff",
+        "#000000",
+        "#007a3d"
+      ]
+    }
+  },
+  {
+    "teamCode": "NOR",
+    "teamName": "Norway",
+    "groupName": "I",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#ba0c2f",
+      "secondary": "#00205b",
+      "flag": [
+        "#ba0c2f",
+        "#ffffff",
+        "#00205b"
+      ]
+    }
+  },
+  {
+    "teamCode": "ARG",
+    "teamName": "Argentina",
+    "groupName": "J",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#75aadb",
+      "secondary": "#ffffff",
+      "flag": [
+        "#75aadb",
+        "#ffffff",
+        "#f6b40e",
+        "#75aadb"
+      ]
+    }
+  },
+  {
+    "teamCode": "ALG",
+    "teamName": "Algeria",
+    "groupName": "J",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#006233",
+      "secondary": "#ffffff",
+      "flag": [
+        "#006233",
+        "#ffffff",
+        "#d21034"
+      ]
+    }
+  },
+  {
+    "teamCode": "AUT",
+    "teamName": "Austria",
+    "groupName": "J",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#ed2939",
+      "secondary": "#ffffff",
+      "flag": [
+        "#ed2939",
+        "#ffffff",
+        "#ed2939"
+      ]
+    }
+  },
+  {
+    "teamCode": "JOR",
+    "teamName": "Jordan",
+    "groupName": "J",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#007a3d",
+      "secondary": "#ce1126",
+      "flag": [
+        "#000000",
+        "#ffffff",
+        "#007a3d",
+        "#ce1126"
+      ]
+    }
+  },
+  {
+    "teamCode": "POR",
+    "teamName": "Portugal",
+    "groupName": "K",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#006600",
+      "secondary": "#ff0000",
+      "flag": [
+        "#006600",
+        "#ffcc00",
+        "#ff0000"
+      ]
+    }
+  },
+  {
+    "teamCode": "COD",
+    "teamName": "DR Congo",
+    "groupName": "K",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#007fff",
+      "secondary": "#f7d618",
+      "flag": [
+        "#007fff",
+        "#f7d618",
+        "#ce1021"
+      ]
+    }
+  },
+  {
+    "teamCode": "UZB",
+    "teamName": "Uzbekistan",
+    "groupName": "K",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#1eb53a",
+      "secondary": "#0099b5",
+      "flag": [
+        "#1eb53a",
+        "#ffffff",
+        "#0099b5"
+      ]
+    }
+  },
+  {
+    "teamCode": "COL",
+    "teamName": "Colombia",
+    "groupName": "K",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#fcd116",
+      "secondary": "#003893",
+      "flag": [
+        "#fcd116",
+        "#003893",
+        "#ce1126"
+      ]
+    }
+  },
+  {
+    "teamCode": "ENG",
+    "teamName": "England",
+    "groupName": "L",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#ffffff",
+      "secondary": "#ce1124",
+      "flag": [
+        "#ffffff",
+        "#ce1124"
+      ]
+    }
+  },
+  {
+    "teamCode": "CRO",
+    "teamName": "Croatia",
+    "groupName": "L",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#ff0000",
+      "secondary": "#171796",
+      "flag": [
+        "#ff0000",
+        "#ffffff",
+        "#171796"
+      ]
+    }
+  },
+  {
+    "teamCode": "GHA",
+    "teamName": "Ghana",
+    "groupName": "L",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#006b3f",
+      "secondary": "#fcd116",
+      "flag": [
+        "#ce1126",
+        "#fcd116",
+        "#006b3f",
+        "#000000"
+      ]
+    }
+  },
+  {
+    "teamCode": "PAN",
+    "teamName": "Panama",
+    "groupName": "L",
+    "section": "team",
+    "stickerCount": 20,
+    "colors": {
+      "primary": "#005293",
+      "secondary": "#d21034",
+      "flag": [
+        "#d21034",
+        "#ffffff",
+        "#005293"
+      ]
+    }
+  }
+]
