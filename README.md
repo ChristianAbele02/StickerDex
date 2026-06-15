@@ -9,7 +9,7 @@ in a booklet-style web app, then follow the whole tournament alongside it: the f
 schedule, live group standings, a knockout bracket, win-probability predictions, and a countdown
 to the next kick-off. All on your own machine.
 
-[![CI](https://github.com/christianabele02/StickerDex/actions/workflows/ci.yml/badge.svg)](https://github.com/christianabele02/StickerDex/actions/workflows/ci.yml)
+[![CI](https://github.com/ChristianAbele02/StickerDex/actions/workflows/ci.yml/badge.svg)](https://github.com/ChristianAbele02/StickerDex/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 ![Node](https://img.shields.io/badge/node-%3E%3D20-brightgreen)
 ![Self-hosted](https://img.shields.io/badge/self--hosted-Docker-blue)
@@ -85,7 +85,7 @@ to the next kick-off. All on your own machine.
 ## 🚀 Quick start (Docker)
 
 ```bash
-git clone https://github.com/christianabele02/StickerDex.git
+git clone https://github.com/ChristianAbele02/StickerDex.git
 cd StickerDex
 cp .env.example .env          # optional: set STICKERDEX_PASSWORD / WEB_PORT
 docker compose up -d --build
