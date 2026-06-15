@@ -274,6 +274,12 @@ All data is **factual reference information** (fixtures, names, numbers) — Sti
 Panini artwork or copyrighted imagery**. Trademarks belong to their respective owners; see the
 disclaimer at the top.
 
+## 🤖 AI usage
+
+AI assistance was used in building this project — for **debugging** and for
+**writing certain code passages** — under human review and direction. Full
+details in [AI_USAGE.md](AI_USAGE.md).
+
 ## 📜 License
 
 [MIT](LICENSE) © 2026 Christian Abele and contributors.
