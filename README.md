@@ -39,15 +39,19 @@ to the next kick-off. All on your own machine.
   but still name who belongs there.
 - 🔁 **Duplicate & swap tracking** — count copies you own with the −/＋ controls and get an
   auto-generated swap list.
-- 📊 **Live stats** — overall completion %, per-team progress bars, and an estimate of packs
-  still needed.
+- 🇺🇳 **Real national flags** — team pages and your stuck-in stickers are painted with each
+  nation's *actual* flag (stars, crescents, suns, crosses and emblems — not just colours),
+  rendered as crisp inline SVG.
+- 📊 **Live stats** — overall completion %, per-team progress bars, and a **coupon-collector**
+  estimate of how many packs you still need (best case · expected · 90% worst case), so the last
+  few stickers' duplicate-pull cost is accounted for.
 - 🔍 **Search & filter** — find any sticker by code or player name; filter by missing / owned /
   duplicates / foils; jump to a group.
 - 📤 **Export lists** — download your **missing** list or your **duplicates** list (with the
   number of spare copies per sticker) — or the full collection — as CSV or JSON.
 
 ### Teams
-- 👥 **Teams hub** — a grid of all 48 nations as flag-gradient cards (group, collection progress,
+- 👥 **Teams hub** — a grid of all 48 nations as national-flag cards (group, collection progress,
   star player); search, filter by group and sort by completion. Tap one for a **squad dashboard**:
   fun-fact tiles (total caps, most-capped player, top scorer, clubs represented), the team's
   current group standing and next fixture, and a grid of **player cards** (shirt number, position,
@@ -72,13 +76,18 @@ to the next kick-off. All on your own machine.
 - ⭐ **Favorite team** — pick one to highlight its album page, fixtures, standings and bracket.
 
 ### Everywhere
+- ⚙️ **Settings** — a dedicated panel for appearance, stickers-per-pack, default simulations, your
+  favorite team, and full **export / import**.
+- 💾 **Backups you can't lose** — a snapshot of your collection is saved **automatically on every
+  startup** (before any reseed), plus one-click manual backups you can restore, download, or
+  delete. Backups are **never** removed automatically.
 - ✨ **Foil shine**, 🌙 **dark mode**, 📱 **responsive**.
 - 🔒 **Optional password** for write access — or run fully open on a trusted LAN.
 - 🐳 **Self-hosted** — one `docker compose up` and your data stays on **your** SQLite database.
 
 ## 🖼️ Screenshots
 
-> Run it locally to see it in motion — the booklet album with flag-gradient team pages and foil
+> Run it locally to see it in motion — the booklet album with real national-flag team pages and foil
 > shine, the Teams squad dashboards, and the live knockout bracket. Drop your own captures into
 > `docs/` and link them here (e.g. `docs/album.png`, `docs/teams.png`, `docs/bracket.png`).
 
@@ -133,8 +142,8 @@ StickerDex/
 │   ├── scripts/raw/                  vendored openfootball source files (CC0)
 │   ├── src/data/   stickers.json · teams.json · checklist.json · players.json · matches.json · venues.json · match-teams.json
 │   ├── src/db/     schema, connection, idempotent seeders (stickers + tournament)
-│   ├── src/routes/ stickers, collection, stats, export, matches, simulate, auth
-│   └── src/services/  catalog · collection · stats · exporter · matches · standings · predictions · simulator
+│   ├── src/routes/ stickers, collection, stats, export, matches, simulate, backups, auth
+│   └── src/services/  catalog · collection · stats · exporter · matches · standings · predictions · simulator · backups
 ├── frontend/       React + Vite + TypeScript + Tailwind (booklet + companion UI)
 │   └── src/        components · pages · hooks · lib · api client
 └── docker-compose.yml   api + web, persistent SQLite volume
@@ -166,6 +175,9 @@ always reflect the latest scores. Single-user by design; the optional password g
 | `GET`  | `/api/predictions` | Elo win/draw/win probabilities for upcoming fixtures |
 | `GET`  | `/api/simulate?runs=N` | Monte Carlo odds: each team's P(win group / advance / … / champion) |
 | `GET`  | `/api/simulate/once?seed=N` | One simulated tournament: filled bracket + champion |
+| `GET`  | `/api/backups` · `POST /api/backups` | List snapshots · make a manual backup |
+| `POST` | `/api/backups/:name/restore` · `DELETE /api/backups/:name` | Restore · delete a snapshot |
+| `GET`  | `/api/backups/:name/download` | Download a snapshot `.db` file |
 | `GET`  | `/api/auth/status` · `POST /api/auth/login` · `/logout` | Optional auth |
 
 ## 🗂️ Data & accuracy
@@ -174,8 +186,9 @@ The album **structure, teams, group draw and sticker codes are accurate**: the r
 nations in their actual groups (A–L), each `×20` (`ARG1…ARG20`), the `FWC1–FWC19` introduction &
 FIFA Museum stickers, and `CC1–CC12` Coca-Cola specials. Team codes and groups match the
 companion's `match-teams.json` exactly, so the album lines up with the schedule, standings and
-bracket (and favorite-team highlighting works across both). Each team page is painted as a
-**gradient of its national flag**.
+bracket (and favorite-team highlighting works across both). Each team page is rendered with its
+**actual national flag** (drawn as inline SVG — stars, crescents, suns, crosses and emblems
+included).
 
 **Player names are real**, pulled from the live tournament squads (name, position and club) — see
 below. The only remaining placeholders are the 31 non-player specials (intro / FIFA Museum /
@@ -260,6 +273,12 @@ StickerDex stands on open data. Huge thanks to:
 All data is **factual reference information** (fixtures, names, numbers) — StickerDex ships **no
 Panini artwork or copyrighted imagery**. Trademarks belong to their respective owners; see the
 disclaimer at the top.
+
+## 🤖 AI usage
+
+AI assistance was used in building this project — for **debugging** and for
+**writing certain code passages** — under human review and direction. Full
+details in [AI_USAGE.md](AI_USAGE.md).
 
 ## 📜 License
 

@@ -6,6 +6,37 @@ All notable changes to this project are documented here. The format is based on
 
 ## [Unreleased]
 
+### Added — Real national flags & smarter pack estimate
+- **SVG national flags** (`lib/flagSvg.tsx`): every team now renders its *actual* flag —
+  correct layout plus the defining motifs (USA's stars & stripes, Türkiye/Tunisia/Algeria
+  crescents, Argentina/Uruguay suns of May, Brazil's globe, Japan's disc, Nordic & St George
+  crosses, Scotland's saltire, the Australian/New Zealand Union Jack + Southern Cross, South
+  Africa's Y-pall, Croatia's chequy, maple leaf, etc.) — replacing the old equal-band colour
+  gradients on album headers, owned sticker tiles, the Teams hub cards/banner and player cards.
+- **Coupon-collector pack estimate**: the stats page now shows best-case, **expected** and
+  90%-confidence pack counts to finish the album, using the classic coupon-collector model
+  (mean `N·H_m`, variance `N²·Σ1/j² − N·H_m`) instead of only the naive best case — so it
+  reflects how many duplicates you really pull chasing the last few stickers.
+
+### Fixed
+- **"Back up now" now reports failures**: the Settings backup/restore/delete actions surface
+  errors (and confirm success) instead of silently doing nothing when the API call fails —
+  e.g. against a backend that predates the backups route.
+
+### Added — Settings & backups
+- **Automatic backups**: on every startup the backend snapshots your collection (a full
+  `VACUUM INTO` SQLite copy) into `data/backups/` **before** any reseed/migration, so reference-data
+  changes can never wipe your collection. Snapshots are **never** auto-deleted.
+- **Settings tab** with a backups manager (back up now · restore · download · delete), appearance,
+  stickers-per-pack (feeds the packs-needed estimate), default simulation count, favorite team, and
+  **export / import** of your whole collection.
+- Backup API: `GET/POST /api/backups`, `POST /api/backups/:name/restore`,
+  `DELETE /api/backups/:name`, `GET /api/backups/:name/download`.
+
+### Fixed
+- Portugal's album flag gradient is now green/red-dominant (with a thin gold seam) instead of an
+  even green-yellow-red tricolour, so it actually resembles the flag.
+
 ### Added — Tournament simulator
 - **Monte Carlo forecaster** (`GET /api/simulate`, `services/simulator.ts`): Elo strength → Poisson
   goal model → thousands of full simulated tournaments (group tiebreakers, eight best third-placed

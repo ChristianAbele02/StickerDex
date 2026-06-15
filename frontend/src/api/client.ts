@@ -1,5 +1,6 @@
 /** Thin fetch wrapper around the StickerDex REST API. */
 import type {
+  BackupInfo,
   CollectionMap,
   Match,
   MatchPrediction,
@@ -70,4 +71,22 @@ export const api = {
     json<{ runs: number; teams: SimRoundProbs[] }>(`/simulate?runs=${runs}`),
   simulateOnce: (seed?: number) =>
     json<SingleSimResult>(`/simulate/once${seed != null ? `?seed=${seed}` : ''}`),
+
+  // --- Backups & restore ---
+  getBackups: () => json<{ backups: BackupInfo[] }>('/backups').then((r) => r.backups),
+  createBackup: () => json<{ backup: BackupInfo | null }>('/backups', { method: 'POST' }),
+  restoreBackup: (name: string) =>
+    json<{ restored: { collection: number; matchResults: number } }>(
+      `/backups/${encodeURIComponent(name)}/restore`,
+      { method: 'POST' },
+    ),
+  deleteBackup: (name: string) =>
+    json<{ deleted: boolean }>(`/backups/${encodeURIComponent(name)}`, { method: 'DELETE' }),
+  backupDownloadUrl: (name: string) => `${BASE}/backups/${encodeURIComponent(name)}/download`,
+
+  importCollection: (collection: CollectionMap) =>
+    json<{ applied: number }>('/collection/import', {
+      method: 'POST',
+      body: JSON.stringify({ collection }),
+    }),
 };

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import type { CollectionMap, Sticker, Team } from '../types.ts';
-import { progressFor } from '../lib/stats.ts';
+import { packEstimate, progressFor } from '../lib/stats.ts';
 import { ProgressBar } from '../components/ProgressBar.tsx';
 import { ExportButtons } from '../components/ExportButtons.tsx';
 
@@ -8,9 +8,8 @@ interface StatsViewProps {
   stickers: Sticker[];
   teams: Team[];
   collection: CollectionMap;
+  stickersPerPack?: number;
 }
-
-const PER_PACK = 7;
 
 function StatCard({ label, value, hint }: { label: string; value: string; hint?: string }) {
   return (
@@ -22,8 +21,13 @@ function StatCard({ label, value, hint }: { label: string; value: string; hint?:
   );
 }
 
-export function StatsView({ stickers, teams, collection }: StatsViewProps) {
+export function StatsView({ stickers, teams, collection, stickersPerPack = 7 }: StatsViewProps) {
+  const PER_PACK = Math.max(1, stickersPerPack);
   const overall = useMemo(() => progressFor(stickers, collection), [stickers, collection]);
+  const estimate = useMemo(
+    () => packEstimate(overall.total, overall.missing, PER_PACK),
+    [overall.total, overall.missing, PER_PACK],
+  );
 
   const teamStats = useMemo(() => {
     const byTeam = new Map<string, Sticker[]>();
@@ -62,13 +66,50 @@ export function StatsView({ stickers, teams, collection }: StatsViewProps) {
       </div>
 
       <div className="rounded-xl bg-white p-4 shadow-sm dark:bg-slate-900">
-        <p className="text-sm">
-          Estimated packs still needed:{' '}
-          <span className="font-bold">{Math.ceil(overall.missing / PER_PACK)}</span>{' '}
-          <span className="text-xs text-slate-400">
-            (best case, {PER_PACK} stickers/pack, no duplicates)
-          </span>
-        </p>
+        <div className="mb-3 flex items-baseline justify-between">
+          <h3 className="text-sm font-bold uppercase tracking-wide text-slate-500">
+            Packs still needed
+          </h3>
+          <span className="text-xs text-slate-400">{PER_PACK} stickers/pack</span>
+        </div>
+        {overall.missing === 0 ? (
+          <p className="text-sm font-semibold text-emerald-600">🎉 Album complete — no packs needed!</p>
+        ) : (
+          <>
+            <div className="grid grid-cols-3 gap-3 text-center">
+              <div className="rounded-lg bg-slate-50 p-3 dark:bg-slate-800/50">
+                <div className="text-2xl font-extrabold">{estimate.bestCasePacks}</div>
+                <div className="text-[11px] font-medium text-slate-500">Best case</div>
+                <div className="text-[10px] text-slate-400">all new, no dupes</div>
+              </div>
+              <div className="rounded-lg bg-emerald-50 p-3 ring-1 ring-emerald-200 dark:bg-emerald-900/20 dark:ring-emerald-800">
+                <div className="text-2xl font-extrabold text-emerald-700 dark:text-emerald-400">
+                  {estimate.expectedPacks}
+                </div>
+                <div className="text-[11px] font-medium text-slate-500">Expected</div>
+                <div className="text-[10px] text-slate-400">≈{estimate.expectedStickers} stickers</div>
+              </div>
+              <div className="rounded-lg bg-slate-50 p-3 dark:bg-slate-800/50">
+                <div className="text-2xl font-extrabold">{estimate.p90Packs}</div>
+                <div className="text-[11px] font-medium text-slate-500">Worst case</div>
+                <div className="text-[10px] text-slate-400">90% confidence</div>
+              </div>
+            </div>
+            <p className="mt-3 text-[11px] leading-relaxed text-slate-400">
+              The <span className="font-semibold">expected</span> figure is the{' '}
+              <a
+                href="https://en.wikipedia.org/wiki/Coupon_collector%27s_problem"
+                target="_blank"
+                rel="noreferrer"
+                className="underline decoration-dotted hover:text-slate-500"
+              >
+                coupon-collector
+              </a>{' '}
+              mean — random duplicates mean you’ll buy far more than the best case to finish the last
+              few stickers. Assumes evenly-distributed packs; trading duplicates lowers it.
+            </p>
+          </>
+        )}
       </div>
 
       <section>

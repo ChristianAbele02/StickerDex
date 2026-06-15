@@ -148,3 +148,13 @@ export interface SingleSimResult {
   bracket: SimMatch[];
   groups: SimGroupRow[];
 }
+
+export interface BackupInfo {
+  name: string;
+  createdAt: string;
+  sizeBytes: number;
+  ownedStickers: number;
+  spareCopies: number;
+  matchResults: number;
+  kind: 'auto' | 'manual';
+}

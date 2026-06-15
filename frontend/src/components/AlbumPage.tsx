@@ -1,6 +1,7 @@
 import type { CollectionMap, Sticker } from '../types.ts';
 import { progressFor } from '../lib/stats.ts';
 import { flagGradient, readableText } from '../lib/sections.ts';
+import { FlagSvg, hasFlagSvg } from '../lib/flagSvg.tsx';
 import { ProgressBar } from './ProgressBar.tsx';
 import { StickerTile } from './StickerTile.tsx';
 
@@ -30,7 +31,9 @@ export function AlbumPage({
   // Team pages get a national-flag gradient (with a subtle dark scrim so the
   // header text stays legible across white/yellow flag bands). Non-team
   // sections keep their simple two-color blend.
+  const teamCode = stickers[0]?.teamCode ?? '';
   const useFlag = Boolean(colors.flag && colors.flag.length > 1);
+  const useSvg = useFlag && hasFlagSvg(teamCode);
   const headerBg = useFlag
     ? `linear-gradient(rgba(0,0,0,0.30), rgba(0,0,0,0.30)), ${flagGradient(colors.flag as string[])}`
     : `linear-gradient(110deg, ${colors.primary}, ${colors.secondary})`;
@@ -46,9 +49,15 @@ export function AlbumPage({
       }`}
     >
       <header
-        className="flex items-center justify-between gap-4 px-5 py-4"
-        style={{ background: headerBg, color: text, textShadow }}
+        className="relative isolate flex items-center justify-between gap-4 overflow-hidden px-5 py-4"
+        style={{ background: useSvg ? undefined : headerBg, color: text, textShadow }}
       >
+        {useSvg && (
+          <>
+            <FlagSvg code={teamCode} cover className="absolute inset-0 -z-10 h-full w-full" />
+            <div className="absolute inset-0 -z-10 bg-black/35" />
+          </>
+        )}
         <div>
           <h2 className="text-xl font-bold leading-tight">{title}</h2>
           {subtitle && <p className="text-xs uppercase tracking-wide opacity-80">{subtitle}</p>}
