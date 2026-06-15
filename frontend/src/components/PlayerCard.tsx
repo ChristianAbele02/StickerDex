@@ -1,6 +1,7 @@
 import type { Sticker } from '../types.ts';
 import { positionMeta } from '../lib/team.ts';
 import { flagGradient } from '../lib/sections.ts';
+import { FlagSvg, hasFlagSvg } from '../lib/flagSvg.tsx';
 
 interface PlayerCardProps {
   sticker: Sticker;
@@ -24,8 +25,12 @@ export function PlayerCard({ sticker, owned, flag, onToggle }: PlayerCardProps) 
           : 'border-slate-200 opacity-75 grayscale-[35%] hover:opacity-100 hover:grayscale-0 dark:border-slate-800'
       }`}
     >
-      {/* Flag accent strip */}
-      <div className="h-1.5 w-full" style={{ background: flagGradient(flag, 90) }} />
+      {/* Flag accent strip — the real national flag where available. */}
+      {sticker.teamCode && hasFlagSvg(sticker.teamCode) ? (
+        <FlagSvg code={sticker.teamCode} cover className="h-3.5 w-full" />
+      ) : (
+        <div className="h-1.5 w-full" style={{ background: flagGradient(flag, 90) }} />
+      )}
 
       <div className="p-3">
         <div className="flex items-start justify-between">

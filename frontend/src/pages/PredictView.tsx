@@ -8,13 +8,14 @@ import type { MatchStage } from '../types.ts';
 interface PredictViewProps {
   teams: Team[];
   favorite: string;
+  defaultRuns?: number;
 }
 
 const RUN_OPTIONS = [1000, 10000, 50000];
 const pct = (n: number) => `${(n * 100).toFixed(1)}%`;
 const pct0 = (n: number) => `${Math.round(n * 100)}%`;
 
-export function PredictView({ teams, favorite }: PredictViewProps) {
+export function PredictView({ teams, favorite, defaultRuns = 10000 }: PredictViewProps) {
   const flagByCode = useMemo(
     () => new Map(teams.map((t) => [t.teamCode, t.colors.flag])),
     [teams],
@@ -24,7 +25,7 @@ export function PredictView({ teams, favorite }: PredictViewProps) {
     [flagByCode],
   );
 
-  const [runs, setRuns] = useState(10000);
+  const [runs, setRuns] = useState(defaultRuns);
   const [probs, setProbs] = useState<SimRoundProbs[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -39,7 +40,7 @@ export function PredictView({ teams, favorite }: PredictViewProps) {
       .finally(() => setLoading(false));
   }, []);
 
-  useEffect(() => runSim(10000), [runSim]);
+  useEffect(() => runSim(defaultRuns), [runSim, defaultRuns]);
 
   return (
     <div className="space-y-8">

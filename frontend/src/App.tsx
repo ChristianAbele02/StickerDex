@@ -11,10 +11,12 @@ import { ScheduleView } from './pages/ScheduleView.tsx';
 import { StandingsView } from './pages/StandingsView.tsx';
 import { BracketView } from './pages/BracketView.tsx';
 import { PredictView } from './pages/PredictView.tsx';
+import { SettingsView } from './pages/SettingsView.tsx';
 import { useStickerDex } from './hooks/useStickerDex.ts';
 import { useTournament } from './hooks/useTournament.ts';
 import { useTheme } from './hooks/useTheme.ts';
 import { useFavorite } from './hooks/useFavorite.ts';
+import { useSettings } from './hooks/useSettings.ts';
 import { progressFor } from './lib/stats.ts';
 
 export default function App() {
@@ -22,6 +24,7 @@ export default function App() {
   const tournament = useTournament();
   const [theme, toggleTheme] = useTheme();
   const [favorite, chooseFavorite] = useFavorite();
+  const [settings, updateSettings] = useSettings();
 
   const [view, setView] = useState<View>('album');
   const [query, setQuery] = useState('');
@@ -126,7 +129,12 @@ export default function App() {
         )}
 
         {view === 'stats' && (
-          <StatsView stickers={stickers} teams={teams} collection={collection} />
+          <StatsView
+            stickers={stickers}
+            teams={teams}
+            collection={collection}
+            stickersPerPack={settings.stickersPerPack}
+          />
         )}
 
         {view === 'missing' && <MissingListView stickers={stickers} collection={collection} />}
@@ -152,7 +160,21 @@ export default function App() {
           />
         </TournamentGate>}
 
-        {view === 'predict' && <PredictView teams={teams} favorite={favorite} />}
+        {view === 'predict' && (
+          <PredictView teams={teams} favorite={favorite} defaultRuns={settings.defaultSimRuns} />
+        )}
+
+        {view === 'settings' && (
+          <SettingsView
+            theme={theme}
+            onToggleTheme={toggleTheme}
+            settings={settings}
+            onSettings={updateSettings}
+            matchTeams={tournament.teams}
+            favorite={favorite}
+            onFavorite={chooseFavorite}
+          />
+        )}
       </main>
 
       <footer className="mx-auto max-w-6xl px-4 py-8 text-center text-xs text-slate-400">

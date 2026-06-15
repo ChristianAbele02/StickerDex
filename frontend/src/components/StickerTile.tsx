@@ -1,5 +1,6 @@
 import type { Sticker } from '../types.ts';
 import { flagGradient, flagSheen, readableText } from '../lib/sections.ts';
+import { FlagSvg, hasFlagSvg } from '../lib/flagSvg.tsx';
 
 interface StickerTileProps {
   sticker: Sticker;
@@ -21,6 +22,7 @@ export function StickerTile({ sticker, count, colors, onToggle, onAdjust }: Stic
   // Team stickers get a flag gradient (with a dark scrim so the player name
   // stays legible); non-team sections fall back to their two-color blend.
   const useFlag = Boolean(colors.flag && colors.flag.length > 1);
+  const useSvg = useFlag && Boolean(sticker.teamCode) && hasFlagSvg(sticker.teamCode as string);
   const ownedBg = useFlag
     ? `linear-gradient(rgba(0,0,0,0.32), rgba(0,0,0,0.32)), ${flagGradient(colors.flag as string[], 160)}`
     : `linear-gradient(160deg, ${colors.primary}, ${colors.secondary})`;
@@ -29,11 +31,19 @@ export function StickerTile({ sticker, count, colors, onToggle, onAdjust }: Stic
 
   return (
     <div
-      className={`group relative flex aspect-[3/4] select-none flex-col rounded-lg p-2 text-center shadow-sm transition ${
+      className={`group relative isolate flex aspect-[3/4] select-none flex-col overflow-hidden rounded-lg p-2 text-center shadow-sm transition ${
         owned ? 'shadow-md' : 'slot-empty bg-slate-50 dark:bg-slate-900'
       }`}
-      style={owned ? { background: ownedBg, color: text, textShadow } : undefined}
+      style={owned ? { background: useSvg ? colors.primary : ownedBg, color: text, textShadow } : undefined}
     >
+      {/* National-flag background (real layout incl. stars/crescents) + scrim. */}
+      {owned && useSvg && (
+        <>
+          <FlagSvg code={sticker.teamCode as string} cover className="absolute inset-0 -z-10 h-full w-full" />
+          <div className="absolute inset-0 -z-10 bg-black/35" />
+        </>
+      )}
+
       {/* Foil shimmer overlay — tinted with the flag's own colors. */}
       {owned && sticker.isFoil && (
         <div

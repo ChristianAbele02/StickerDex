@@ -229,7 +229,9 @@ const FLAGS: Record<string, string[]> = {
   ALG: ['#006233', '#ffffff', '#d21034'],
   AUT: ['#ed2939', '#ffffff', '#ed2939'],
   JOR: ['#000000', '#ffffff', '#007a3d', '#ce1126'],
-  POR: ['#006600', '#ffcc00', '#ff0000'],
+  // Green (hoist ~2/5) + red (fly ~3/5) with a thin gold seam for the emblem —
+  // green/red dominant, not an even green-yellow-red tricolour.
+  POR: ['#006600', '#006600', '#006600', '#ffe000', '#da291c', '#da291c', '#da291c', '#da291c'],
   COD: ['#007fff', '#f7d618', '#ce1021'],
   UZB: ['#1eb53a', '#ffffff', '#0099b5'],
   COL: ['#fcd116', '#003893', '#ce1126'],

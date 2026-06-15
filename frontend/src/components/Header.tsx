@@ -10,7 +10,8 @@ export type View =
   | 'schedule'
   | 'standings'
   | 'bracket'
-  | 'predict';
+  | 'predict'
+  | 'settings';
 
 interface HeaderProps {
   view: View;
@@ -118,6 +119,8 @@ export function Header({
           {TOURNAMENT_TABS.map((t) => (
             <Tab key={t.value} tab={t} view={view} onView={onView} />
           ))}
+          <span className="mx-1 hidden h-5 w-px bg-slate-300 dark:bg-slate-700 sm:inline-block" />
+          <Tab tab={{ value: 'settings', label: '⚙️' }} view={view} onView={onView} />
         </nav>
       </div>
     </header>

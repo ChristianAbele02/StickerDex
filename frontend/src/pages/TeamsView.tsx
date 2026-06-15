@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import type { CollectionMap, Sticker, Team } from '../types.ts';
 import type { TournamentState } from '../hooks/useTournament.ts';
 import { flagGradient } from '../lib/sections.ts';
+import { FlagSvg, hasFlagSvg } from '../lib/flagSvg.tsx';
 import { teamFacts, positionMeta } from '../lib/team.ts';
 import { PlayerCard } from '../components/PlayerCard.tsx';
 import { ProgressBar } from '../components/ProgressBar.tsx';
@@ -122,13 +123,21 @@ export function TeamsView({
               }`}
             >
               <div
-                className="relative px-4 py-5"
+                className="relative isolate overflow-hidden px-4 py-5"
                 style={{
-                  background: `linear-gradient(rgba(0,0,0,0.28), rgba(0,0,0,0.28)), ${flagGradient(team.colors.flag)}`,
+                  background: hasFlagSvg(team.teamCode)
+                    ? team.colors.primary
+                    : `linear-gradient(rgba(0,0,0,0.28), rgba(0,0,0,0.28)), ${flagGradient(team.colors.flag)}`,
                   color: '#fff',
                   textShadow: '0 1px 2px rgba(0,0,0,0.55)',
                 }}
               >
+                {hasFlagSvg(team.teamCode) && (
+                  <>
+                    <FlagSvg code={team.teamCode} cover className="absolute inset-0 -z-10 h-full w-full" />
+                    <div className="absolute inset-0 -z-10 bg-black/30" />
+                  </>
+                )}
                 <div className="flex items-center justify-between">
                   <span className="rounded-full bg-white/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide">
                     Group {team.groupName}
@@ -279,13 +288,21 @@ function TeamDetailModal({
       >
         {/* Banner */}
         <div
-          className="relative px-6 py-6"
+          className="relative isolate overflow-hidden px-6 py-6"
           style={{
-            background: `linear-gradient(rgba(0,0,0,0.30), rgba(0,0,0,0.30)), ${flagGradient(team.colors.flag)}`,
+            background: hasFlagSvg(team.teamCode)
+              ? team.colors.primary
+              : `linear-gradient(rgba(0,0,0,0.30), rgba(0,0,0,0.30)), ${flagGradient(team.colors.flag)}`,
             color: '#fff',
             textShadow: '0 1px 2px rgba(0,0,0,0.55)',
           }}
         >
+          {hasFlagSvg(team.teamCode) && (
+            <>
+              <FlagSvg code={team.teamCode} cover className="absolute inset-0 -z-10 h-full w-full" />
+              <div className="absolute inset-0 -z-10 bg-black/35" />
+            </>
+          )}
           <button
             type="button"
             onClick={onClose}
