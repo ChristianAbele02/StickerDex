@@ -5,6 +5,8 @@ import type {
   MatchPrediction,
   MatchTeam,
   MatchVenue,
+  SimRoundProbs,
+  SingleSimResult,
   StandingRow,
   Sticker,
   Team,
@@ -62,4 +64,10 @@ export const api = {
     }),
   clearResult: (num: number) =>
     json<{ num: number; cleared: boolean }>(`/matches/${num}/result`, { method: 'DELETE' }),
+
+  // --- Monte Carlo forecaster ---
+  simulate: (runs: number) =>
+    json<{ runs: number; teams: SimRoundProbs[] }>(`/simulate?runs=${runs}`),
+  simulateOnce: (seed?: number) =>
+    json<SingleSimResult>(`/simulate/once${seed != null ? `?seed=${seed}` : ''}`),
 };

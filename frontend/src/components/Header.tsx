@@ -9,7 +9,8 @@ export type View =
   | 'duplicates'
   | 'schedule'
   | 'standings'
-  | 'bracket';
+  | 'bracket'
+  | 'predict';
 
 interface HeaderProps {
   view: View;
@@ -34,6 +35,7 @@ const TOURNAMENT_TABS: { value: View; label: string }[] = [
   { value: 'schedule', label: 'Schedule' },
   { value: 'standings', label: 'Standings' },
   { value: 'bracket', label: 'Bracket' },
+  { value: 'predict', label: '🔮 Predict' },
 ];
 
 function Tab({ tab, view, onView }: { tab: { value: View; label: string }; view: View; onView: (v: View) => void }) {

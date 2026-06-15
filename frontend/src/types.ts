@@ -105,3 +105,46 @@ export interface MatchPrediction {
   homeElo: number;
   awayElo: number;
 }
+
+export interface SimRoundProbs {
+  code: string;
+  name: string;
+  group: string | null;
+  winGroup: number;
+  advance: number;
+  r16: number;
+  quarter: number;
+  semi: number;
+  final: number;
+  champion: number;
+}
+
+export interface SimMatch {
+  num: number;
+  stage: MatchStage;
+  homeCode: string;
+  homeName: string;
+  awayCode: string;
+  awayName: string;
+  homeGoals: number;
+  awayGoals: number;
+  winnerCode: string;
+  decidedOnPens: boolean;
+}
+
+export interface SimGroupRow {
+  code: string;
+  name: string;
+  group: string;
+  points: number;
+  goalDiff: number;
+  goalsFor: number;
+}
+
+export interface SingleSimResult {
+  seed: number | null;
+  championCode: string | null;
+  championName: string | null;
+  bracket: SimMatch[];
+  groups: SimGroupRow[];
+}

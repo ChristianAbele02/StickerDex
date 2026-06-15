@@ -63,6 +63,11 @@ to the next kick-off. All on your own machine.
   automatically from standings and results.
 - 🔮 **Win predictions** — a self-hosted **Elo model** (no API key, fully offline) shows
   win / draw / win probabilities that sharpen as you enter real results.
+- 🏆 **Tournament simulator** — a **Monte Carlo forecaster** (Elo strength → Poisson goals →
+  thousands of simulated tournaments) gives every team's odds to **win the group, advance, and
+  lift the trophy**, plus a "play one tournament" button that rolls a full random bracket to a
+  champion. Conditions on the results you've entered, so the forecast updates live.
+  📄 **Full maths & citations: [docs/PREDICTIONS.md](docs/PREDICTIONS.md).**
 - ⏱️ **Next-match countdown** — a live banner to the next kick-off (your team first, if chosen).
 - ⭐ **Favorite team** — pick one to highlight its album page, fixtures, standings and bracket.
 
@@ -128,8 +133,8 @@ StickerDex/
 │   ├── scripts/raw/                  vendored openfootball source files (CC0)
 │   ├── src/data/   stickers.json · teams.json · checklist.json · players.json · matches.json · venues.json · match-teams.json
 │   ├── src/db/     schema, connection, idempotent seeders (stickers + tournament)
-│   ├── src/routes/ stickers, collection, stats, export, matches, auth
-│   └── src/services/  catalog · collection · stats · exporter · matches · standings · predictions
+│   ├── src/routes/ stickers, collection, stats, export, matches, simulate, auth
+│   └── src/services/  catalog · collection · stats · exporter · matches · standings · predictions · simulator
 ├── frontend/       React + Vite + TypeScript + Tailwind (booklet + companion UI)
 │   └── src/        components · pages · hooks · lib · api client
 └── docker-compose.yml   api + web, persistent SQLite volume
@@ -159,6 +164,8 @@ always reflect the latest scores. Single-user by design; the optional password g
 | `DELETE`| `/api/matches/:num/result` | Clear a score (mark not played) |
 | `GET`  | `/api/standings` | Live group tables computed from results |
 | `GET`  | `/api/predictions` | Elo win/draw/win probabilities for upcoming fixtures |
+| `GET`  | `/api/simulate?runs=N` | Monte Carlo odds: each team's P(win group / advance / … / champion) |
+| `GET`  | `/api/simulate/once?seed=N` | One simulated tournament: filled bracket + champion |
 | `GET`  | `/api/auth/status` · `POST /api/auth/login` · `/logout` | Optional auth |
 
 ## 🗂️ Data & accuracy
@@ -206,6 +213,18 @@ results — is generated from the [openfootball](https://github.com/openfootball
 **Predictions** come from a small, fully self-hosted **Elo model** — no external API, no network.
 Teams start from coarse seed ratings (an estimate, _not_ an official ranking) and the model
 re-rates them from the results you enter, so probabilities improve over the tournament.
+
+**The tournament simulator** ([`services/simulator.ts`](backend/src/services/simulator.ts)) wraps
+that strength rating in a **Monte Carlo** engine, the same family of method academic forecasters
+use (Klement, Zeileis, FiveThirtyEight's SPI). Each fixture's scoreline is drawn from a
+**Poisson** model whose means come from the Elo gap plus home advantage; a full tournament — group
+tiebreakers, the eight best third-placed teams assigned to their official Round-of-32 slots, and
+every knockout tie (penalties included) — is played out thousands of times, and the share of runs
+each team wins becomes its title odds. Already-played matches are taken as fact, so the forecast is
+conditional and live. It runs ~10,000 tournaments in well under a second, entirely on your machine.
+
+👉 **The complete model — every formula, parameter and citation, explained beginner-first — is in
+[docs/PREDICTIONS.md](docs/PREDICTIONS.md).**
 
 ## 🔧 Configuration
 

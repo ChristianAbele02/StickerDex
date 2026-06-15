@@ -10,6 +10,7 @@ import { TeamsView } from './pages/TeamsView.tsx';
 import { ScheduleView } from './pages/ScheduleView.tsx';
 import { StandingsView } from './pages/StandingsView.tsx';
 import { BracketView } from './pages/BracketView.tsx';
+import { PredictView } from './pages/PredictView.tsx';
 import { useStickerDex } from './hooks/useStickerDex.ts';
 import { useTournament } from './hooks/useTournament.ts';
 import { useTheme } from './hooks/useTheme.ts';
@@ -150,6 +151,8 @@ export default function App() {
             favorite={favorite}
           />
         </TournamentGate>}
+
+        {view === 'predict' && <PredictView teams={teams} favorite={favorite} />}
       </main>
 
       <footer className="mx-auto max-w-6xl px-4 py-8 text-center text-xs text-slate-400">

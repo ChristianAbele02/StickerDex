@@ -172,3 +172,52 @@ export interface MatchPrediction {
   homeElo: number;
   awayElo: number;
 }
+
+/** Monte Carlo forecast: a team's probability of reaching each stage (0–1). */
+export interface SimRoundProbs {
+  code: string;
+  name: string;
+  group: string | null;
+  /** P(finish 1st in group). */
+  winGroup: number;
+  /** P(advance to the Round of 32). */
+  advance: number;
+  r16: number;
+  quarter: number;
+  semi: number;
+  final: number;
+  champion: number;
+}
+
+/** One simulated knockout fixture in a single-run bracket. */
+export interface SimMatch {
+  num: number;
+  stage: MatchStage;
+  homeCode: string;
+  homeName: string;
+  awayCode: string;
+  awayName: string;
+  homeGoals: number;
+  awayGoals: number;
+  winnerCode: string;
+  decidedOnPens: boolean;
+}
+
+/** A simple group-standings row from a single simulated run. */
+export interface SimGroupRow {
+  code: string;
+  name: string;
+  group: string;
+  points: number;
+  goalDiff: number;
+  goalsFor: number;
+}
+
+/** Result of simulating one full tournament (for the interactive bracket). */
+export interface SingleSimResult {
+  seed: number | null;
+  championCode: string | null;
+  championName: string | null;
+  bracket: SimMatch[];
+  groups: SimGroupRow[];
+}

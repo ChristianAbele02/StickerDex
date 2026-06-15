@@ -12,6 +12,7 @@ import { collectionRoutes } from './routes/collection.ts';
 import { statsRoutes } from './routes/stats.ts';
 import { exportRoutes } from './routes/export.ts';
 import { matchRoutes } from './routes/matches.ts';
+import { simulateRoutes } from './routes/simulate.ts';
 
 declare module 'fastify' {
   interface FastifyInstance {
@@ -43,6 +44,7 @@ export async function buildApp({ db, logger = false }: BuildOptions): Promise<Fa
   await app.register(statsRoutes);
   await app.register(exportRoutes);
   await app.register(matchRoutes);
+  await app.register(simulateRoutes);
 
   return app;
 }

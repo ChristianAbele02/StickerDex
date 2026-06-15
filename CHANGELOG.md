@@ -6,6 +6,17 @@ All notable changes to this project are documented here. The format is based on
 
 ## [Unreleased]
 
+### Added — Tournament simulator
+- **Monte Carlo forecaster** (`GET /api/simulate`, `services/simulator.ts`): Elo strength → Poisson
+  goal model → thousands of full simulated tournaments (group tiebreakers, eight best third-placed
+  teams assigned to their official R32 slots, knockout incl. penalties). Returns each team's
+  probability to win its group, advance, reach each round, and win the cup; conditions on
+  already-entered results. ~10k runs in <1s.
+- `GET /api/simulate/once` plays a single random tournament and returns the fully filled bracket
+  and champion.
+- New **🔮 Predict** tab: predicted-champion board with per-round odds, a group-stage advance
+  forecast, and a "play one tournament" button that rolls a complete bracket to a winner.
+
 ### Added — Tournament companion
 - **Full match schedule**: all 104 fixtures with real venues, dates and kick-off times
   (venue-local + your local time), filterable by stage / upcoming / favorite team. Generated
