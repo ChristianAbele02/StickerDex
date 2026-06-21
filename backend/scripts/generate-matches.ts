@@ -22,62 +22,11 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { Match, MatchStage, MatchTeam, MatchVenue } from '../src/types.ts';
+import { OF_TEAMS as TEAMS } from '../src/lib/openfootball.ts';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const rawDir = resolve(__dirname, 'raw');
 const outDir = resolve(__dirname, '../src/data');
-
-/** openfootball team name -> FIFA code + flag colors for the 48 qualified teams. */
-const TEAMS: Record<string, { code: string; primary: string; secondary: string }> = {
-  Mexico: { code: 'MEX', primary: '#006847', secondary: '#ce1126' },
-  'South Africa': { code: 'RSA', primary: '#007749', secondary: '#ffb81c' },
-  'South Korea': { code: 'KOR', primary: '#cd2e3a', secondary: '#0047a0' },
-  'Czech Republic': { code: 'CZE', primary: '#11457e', secondary: '#d7141a' },
-  Canada: { code: 'CAN', primary: '#d52b1e', secondary: '#ffffff' },
-  'Bosnia & Herzegovina': { code: 'BIH', primary: '#002395', secondary: '#ffec00' },
-  Qatar: { code: 'QAT', primary: '#8a1538', secondary: '#ffffff' },
-  Switzerland: { code: 'SUI', primary: '#d52b1e', secondary: '#ffffff' },
-  Brazil: { code: 'BRA', primary: '#ffdf00', secondary: '#009b3a' },
-  Morocco: { code: 'MAR', primary: '#c1272d', secondary: '#006233' },
-  Haiti: { code: 'HAI', primary: '#00209f', secondary: '#d21034' },
-  Scotland: { code: 'SCO', primary: '#0065bf', secondary: '#ffffff' },
-  USA: { code: 'USA', primary: '#0a3161', secondary: '#b31942' },
-  Paraguay: { code: 'PAR', primary: '#d52b1e', secondary: '#0038a8' },
-  Australia: { code: 'AUS', primary: '#00843d', secondary: '#ffcd00' },
-  Turkey: { code: 'TUR', primary: '#e30a17', secondary: '#ffffff' },
-  Germany: { code: 'GER', primary: '#000000', secondary: '#dd0000' },
-  'Curaçao': { code: 'CUW', primary: '#002b7f', secondary: '#f9d616' },
-  'Ivory Coast': { code: 'CIV', primary: '#f77f00', secondary: '#009e60' },
-  Ecuador: { code: 'ECU', primary: '#ffd100', secondary: '#0072ce' },
-  Netherlands: { code: 'NED', primary: '#ae1c28', secondary: '#21468b' },
-  Japan: { code: 'JPN', primary: '#000091', secondary: '#bc002d' },
-  Sweden: { code: 'SWE', primary: '#006aa7', secondary: '#fecc00' },
-  Tunisia: { code: 'TUN', primary: '#e70013', secondary: '#ffffff' },
-  Belgium: { code: 'BEL', primary: '#000000', secondary: '#fdda24' },
-  Egypt: { code: 'EGY', primary: '#ce1126', secondary: '#000000' },
-  Iran: { code: 'IRN', primary: '#239f40', secondary: '#da0000' },
-  'New Zealand': { code: 'NZL', primary: '#000000', secondary: '#ffffff' },
-  Spain: { code: 'ESP', primary: '#aa151b', secondary: '#f1bf00' },
-  'Cape Verde': { code: 'CPV', primary: '#003893', secondary: '#cf2027' },
-  'Saudi Arabia': { code: 'KSA', primary: '#006c35', secondary: '#ffffff' },
-  Uruguay: { code: 'URU', primary: '#5cbfeb', secondary: '#001489' },
-  France: { code: 'FRA', primary: '#0055a4', secondary: '#ef4135' },
-  Senegal: { code: 'SEN', primary: '#00853f', secondary: '#fdef42' },
-  Iraq: { code: 'IRQ', primary: '#007a3d', secondary: '#ce1126' },
-  Norway: { code: 'NOR', primary: '#ba0c2f', secondary: '#00205b' },
-  Argentina: { code: 'ARG', primary: '#75aadb', secondary: '#ffffff' },
-  Algeria: { code: 'ALG', primary: '#006233', secondary: '#ffffff' },
-  Austria: { code: 'AUT', primary: '#ed2939', secondary: '#ffffff' },
-  Jordan: { code: 'JOR', primary: '#007a3d', secondary: '#ce1126' },
-  Portugal: { code: 'POR', primary: '#006600', secondary: '#ff0000' },
-  'DR Congo': { code: 'COD', primary: '#007fff', secondary: '#f7d618' },
-  Uzbekistan: { code: 'UZB', primary: '#1eb53a', secondary: '#0099b5' },
-  Colombia: { code: 'COL', primary: '#fcd116', secondary: '#003893' },
-  England: { code: 'ENG', primary: '#ffffff', secondary: '#ce1124' },
-  Croatia: { code: 'CRO', primary: '#ff0000', secondary: '#171796' },
-  Ghana: { code: 'GHA', primary: '#006b3f', secondary: '#fcd116' },
-  Panama: { code: 'PAN', primary: '#005293', secondary: '#d21034' },
-};
 
 const MONTHS: Record<string, number> = {
   January: 0, February: 1, March: 2, April: 3, May: 4, June: 5,

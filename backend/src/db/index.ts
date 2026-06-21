@@ -44,6 +44,14 @@ function migrate(db: DB): void {
   for (const [col, type] of Object.entries(add)) {
     if (!cols.includes(col)) db.exec(`ALTER TABLE stickers ADD COLUMN ${col} ${type}`);
   }
+
+  // match_results.source: distinguishes feed-supplied scores from user edits.
+  const resultCols = (db.prepare('PRAGMA table_info(match_results)').all() as { name: string }[]).map(
+    (c) => c.name,
+  );
+  if (resultCols.length > 0 && !resultCols.includes('source')) {
+    db.exec(`ALTER TABLE match_results ADD COLUMN source TEXT NOT NULL DEFAULT 'feed'`);
+  }
 }
 
 /** For tests: open an isolated in-memory database. */

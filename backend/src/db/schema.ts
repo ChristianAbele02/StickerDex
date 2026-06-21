@@ -68,10 +68,14 @@ CREATE INDEX IF NOT EXISTS idx_matches_stage ON matches (stage);
 CREATE INDEX IF NOT EXISTS idx_matches_group ON matches (group_name);
 
 -- The only mutable tournament table: entered/known scores, one row per match.
+-- The "source" column records who set the score: feed (auto from the live
+-- results feed / seeded dataset) or user (you, in-app). The live feed only ever
+-- overwrites feed rows, so your manual edits are never clobbered.
 CREATE TABLE IF NOT EXISTS match_results (
   num         INTEGER PRIMARY KEY REFERENCES matches (num) ON DELETE CASCADE,
   home_score  INTEGER NOT NULL CHECK (home_score >= 0),
   away_score  INTEGER NOT NULL CHECK (away_score >= 0),
+  source      TEXT NOT NULL DEFAULT 'feed',
   updated_at  TEXT NOT NULL DEFAULT (datetime('now'))
 );
 `;

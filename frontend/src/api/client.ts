@@ -89,4 +89,11 @@ export const api = {
       method: 'POST',
       body: JSON.stringify({ collection }),
     }),
+
+  // --- Live results feed ---
+  refreshResults: () =>
+    json<{ summary: { added: number; updated: number; unchanged: number; unmatched: number; total: number } }>(
+      '/results/refresh',
+      { method: 'POST' },
+    ),
 };

@@ -85,18 +85,23 @@ function matchExists(db: DB, num: number): boolean {
   return db.prepare('SELECT 1 FROM matches WHERE num = ?').get(num) !== undefined;
 }
 
-/** Sets (or overwrites) a match result. Returns false if the match is unknown. */
+/**
+ * Sets (or overwrites) a match result from a user edit. Marks the row `source =
+ * 'user'` so the live results feed will never overwrite it. Returns false if the
+ * match is unknown.
+ */
 export function setResult(db: DB, num: number, homeScore: number, awayScore: number): boolean {
   if (!matchExists(db, num)) return false;
   const h = Math.max(0, Math.floor(homeScore));
   const a = Math.max(0, Math.floor(awayScore));
   db.prepare(
     /* sql */ `
-    INSERT INTO match_results (num, home_score, away_score, updated_at)
-    VALUES (?, ?, ?, datetime('now'))
+    INSERT INTO match_results (num, home_score, away_score, source, updated_at)
+    VALUES (?, ?, ?, 'user', datetime('now'))
     ON CONFLICT(num) DO UPDATE SET
       home_score = excluded.home_score,
       away_score = excluded.away_score,
+      source = 'user',
       updated_at = excluded.updated_at
   `,
   ).run(num, h, a);

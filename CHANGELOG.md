@@ -6,6 +6,27 @@ All notable changes to this project are documented here. The format is based on
 
 ## [Unreleased]
 
+### Added — Live results feed (auto-updating)
+- **Results refresh automatically at startup**: a new feed (`services/resultsFeed.ts`) pulls the
+  latest played scores from the public [openfootball](https://github.com/openfootball/worldcup)
+  dataset (CC0) every time the server boots, in the background (best-effort — a slow/offline
+  network never delays startup). Because Elo, predictions, standings and the Monte Carlo simulator
+  are all derived from the results on each request, they update **live** as new games are played —
+  no regenerate, no redeploy.
+- **Your edits are protected**: results now carry a `source` (`feed` vs `user`). The feed only ever
+  writes/overwrites its own `feed` rows — any score you entered or corrected in-app is never
+  clobbered. (Idempotent DB migration adds the column.)
+- **Manual refresh**: `POST /api/results/refresh` and a **"Refresh results now"** button in Settings
+  pull newly-played games on demand (reports added / updated / unchanged).
+- Configurable via env: `LIVE_RESULTS=off` disables it; `RESULTS_FEED_CUP_URL` /
+  `RESULTS_FEED_FINALS_URL` / `RESULTS_FEED_TIMEOUT_MS` override the source.
+- Shared openfootball parser (`lib/openfootball.ts`) is now used by both the build-time generator
+  and the runtime feed, so the team mapping and score parsing can't drift.
+
+### Changed — Live results refresh
+- Bundled dataset refreshed to **36 played games** (matchdays 1–2 plus early matchday-3 fixtures).
+  Only scores changed — fixtures, numbering, venues and teams are untouched.
+
 ### Added — Real national flags & smarter pack estimate
 - **SVG national flags** (`lib/flagSvg.tsx`): every team now renders its *actual* flag —
   correct layout plus the defining motifs (USA's stars & stripes, Türkiye/Tunisia/Algeria
