@@ -6,8 +6,30 @@ import { getDb } from './db/index.ts';
 import { seed } from './db/seed.ts';
 import { seedTournament } from './db/seed-matches.ts';
 import { createBackup } from './services/backups.ts';
+import { liveResultsEnabled, refreshResults } from './services/resultsFeed.ts';
 
 const PORT = Number(process.env.API_PORT ?? 3001);
+
+/**
+ * Best-effort: pull the latest played scores from the public results feed and
+ * fold them in. Runs in the background so a slow/offline network never delays
+ * startup; predictions/standings/simulator recompute from the data on demand.
+ */
+async function refreshLiveResults(db: ReturnType<typeof getDb>): Promise<void> {
+  if (!liveResultsEnabled()) {
+    console.log('Live results feed disabled (LIVE_RESULTS=off).');
+    return;
+  }
+  try {
+    const s = await refreshResults(db);
+    console.log(
+      `Live results: ${s.added} new, ${s.updated} updated, ${s.unchanged} unchanged ` +
+        `(${s.total} played in feed).`,
+    );
+  } catch (err) {
+    console.warn('Live results refresh skipped:', (err as Error).message);
+  }
+}
 
 async function main(): Promise<void> {
   const db = getDb();
@@ -30,6 +52,9 @@ async function main(): Promise<void> {
   const app = await buildApp({ db, logger: true });
   await app.listen({ port: PORT, host: '0.0.0.0' });
   console.log(`StickerDex API listening on http://0.0.0.0:${PORT}`);
+
+  // Pull live results in the background once we're up (non-blocking).
+  void refreshLiveResults(db);
 }
 
 main().catch((err) => {

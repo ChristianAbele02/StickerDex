@@ -61,6 +61,9 @@ to the next kick-off. All on your own machine.
 ### Tournament companion
 - 🗓️ **Full schedule** — all 104 fixtures with real venues, dates and kick-off times (shown in
   both venue-local and your local time), filterable by stage / upcoming / your team.
+- 🔄 **Live results feed** — played scores are pulled automatically from the public openfootball
+  dataset every time the server starts (and on demand from Settings), so standings, predictions and
+  the simulator stay current as games finish. Scores you enter yourself are never overwritten.
 - ✍️ **Enter results** — record any score; everything downstream updates instantly.
 - 🏆 **Live group standings** — auto-computed P/W/D/L/GF/GA/GD/Pts tables, top-two highlighted.
 - 🧮 **Knockout bracket** — Round of 32 → Final, with slots (`1A`, `W74`, …) resolving
@@ -142,8 +145,8 @@ StickerDex/
 │   ├── scripts/raw/                  vendored openfootball source files (CC0)
 │   ├── src/data/   stickers.json · teams.json · checklist.json · players.json · matches.json · venues.json · match-teams.json
 │   ├── src/db/     schema, connection, idempotent seeders (stickers + tournament)
-│   ├── src/routes/ stickers, collection, stats, export, matches, simulate, backups, auth
-│   └── src/services/  catalog · collection · stats · exporter · matches · standings · predictions · simulator · backups
+│   ├── src/routes/ stickers, collection, stats, export, matches, simulate, backups, results, auth
+│   └── src/services/  catalog · collection · stats · exporter · matches · standings · predictions · simulator · backups · resultsFeed
 ├── frontend/       React + Vite + TypeScript + Tailwind (booklet + companion UI)
 │   └── src/        components · pages · hooks · lib · api client
 └── docker-compose.yml   api + web, persistent SQLite volume
@@ -171,6 +174,7 @@ always reflect the latest scores. Single-user by design; the optional password g
 | `GET`  | `/api/venues` · `/api/match-teams` | 16 host venues · 48 tournament teams |
 | `PUT`  | `/api/matches/:num/result` | Enter/overwrite a score `{ homeScore, awayScore }` |
 | `DELETE`| `/api/matches/:num/result` | Clear a score (mark not played) |
+| `POST` | `/api/results/refresh` | Pull the latest played scores from the live feed |
 | `GET`  | `/api/standings` | Live group tables computed from results |
 | `GET`  | `/api/predictions` | Elo win/draw/win probabilities for upcoming fixtures |
 | `GET`  | `/api/simulate?runs=N` | Monte Carlo odds: each team's P(win group / advance / … / champion) |
@@ -223,6 +227,13 @@ results — is generated from the [openfootball](https://github.com/openfootball
 (public domain, **CC0**), vendored under `backend/scripts/raw/`. Every fixture and result is also
 **fully editable in-app**, so corrections never require a regenerate.
 
+On top of the bundled snapshot, a **live results feed** (`services/resultsFeed.ts`) re-pulls the
+latest played scores from openfootball on every server start (and on demand via Settings →
+*Refresh results now* / `POST /api/results/refresh`). It's best-effort (offline is fine) and tags
+each score's `source`, so feed updates flow into standings, Elo, predictions and the simulator
+automatically **without ever overwriting a score you entered yourself**. Disable with
+`LIVE_RESULTS=off`.
+
 **Predictions** come from a small, fully self-hosted **Elo model** — no external API, no network.
 Teams start from coarse seed ratings (an estimate, _not_ an official ranking) and the model
 re-rates them from the results you enter, so probabilities improve over the tournament.
@@ -249,6 +260,10 @@ All via environment variables (see [`.env.example`](.env.example)):
 | `STICKERDEX_PASSWORD` | _(empty)_ | If set, writes require login |
 | `STICKERDEX_SECRET` | `change-me…` | Cookie signing secret (set this!) |
 | `DATABASE_PATH` | `/app/data/stickerdex.db` | SQLite file location |
+| `LIVE_RESULTS` | `on` | Set to `off` to disable the startup results feed |
+| `RESULTS_FEED_CUP_URL` | _(openfootball)_ | Override the live group-stage results source |
+| `RESULTS_FEED_FINALS_URL` | _(openfootball)_ | Override the live knockout results source |
+| `RESULTS_FEED_TIMEOUT_MS` | `8000` | Per-request timeout for the results feed |
 
 ## 🤝 Contributing
 

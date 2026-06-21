@@ -115,8 +115,53 @@ export function SettingsView({
         </label>
       </Section>
 
+      <ResultsFeedSection />
+
       <ExportImportSection />
     </div>
+  );
+}
+
+function ResultsFeedSection() {
+  const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState<string | null>(null);
+
+  const refresh = async () => {
+    setBusy(true);
+    setMsg(null);
+    try {
+      const { summary } = await api.refreshResults();
+      const changed = summary.added + summary.updated;
+      setMsg(
+        changed > 0
+          ? `✓ ${summary.added} new, ${summary.updated} updated — reloading…`
+          : `✓ Already up to date (${summary.total} games in feed).`,
+      );
+      if (changed > 0) setTimeout(() => window.location.reload(), 800);
+    } catch (e) {
+      setMsg(`⚠ Refresh failed: ${(e as Error).message}`);
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <Section
+      title="Tournament results"
+      hint="Scores are pulled automatically from the public openfootball feed each time the server starts. Refresh now to fetch newly-played games — your own edited scores are never overwritten."
+    >
+      <div className="flex flex-wrap items-center gap-3">
+        <button
+          type="button"
+          onClick={refresh}
+          disabled={busy}
+          className="rounded-lg bg-sky-600 px-4 py-1.5 text-sm font-bold text-white hover:bg-sky-700 disabled:opacity-50"
+        >
+          {busy ? 'Refreshing…' : '🔄 Refresh results now'}
+        </button>
+        {msg && <span className="text-xs text-slate-500">{msg}</span>}
+      </div>
+    </Section>
   );
 }
 

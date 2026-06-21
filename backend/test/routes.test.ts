@@ -123,17 +123,28 @@ describe('API routes', () => {
   });
 
   it('records a match result and reflects it in standings', async () => {
-    const put = await app.inject({
-      method: 'PUT',
-      url: '/api/matches/1/result',
-      payload: { homeScore: 2, awayScore: 0 },
-    });
-    expect(put.statusCode).toBe(200);
+    // Match 1 is Mexico (home) v South Africa. Test the *effect* of editing its
+    // result on Mexico's points, independent of however many other group games
+    // ship pre-seeded from the dataset.
+    const mexPoints = async () => {
+      const standings = (await app.inject({ method: 'GET', url: '/api/standings' })).json()
+        .standings as { code: string; points: number }[];
+      return standings.find((r) => r.code === 'MEX')!.points;
+    };
 
-    const standings = (await app.inject({ method: 'GET', url: '/api/standings' })).json().standings;
-    const groupA = standings.filter((r: { group: string }) => r.group === 'A');
-    const leader = groupA.find((r: { rank: number }) => r.rank === 1);
-    expect(leader.points).toBe(3);
+    // Force a known 2-0 home win, then clear it — points must drop by 3.
+    await app.inject({ method: 'PUT', url: '/api/matches/1/result', payload: { homeScore: 2, awayScore: 0 } });
+    const withWin = await mexPoints();
+
+    const del = await app.inject({ method: 'DELETE', url: '/api/matches/1/result' });
+    expect(del.statusCode).toBe(200);
+    const withoutWin = await mexPoints();
+    expect(withWin - withoutWin).toBe(3);
+
+    // Re-record it — points come back.
+    const put = await app.inject({ method: 'PUT', url: '/api/matches/1/result', payload: { homeScore: 2, awayScore: 0 } });
+    expect(put.statusCode).toBe(200);
+    expect(await mexPoints()).toBe(withWin);
   });
 
   it('rejects an invalid score and an unknown match', async () => {
