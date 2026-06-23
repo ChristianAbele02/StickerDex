@@ -4,18 +4,14 @@
  * on every startup. Run directly with `npm run seed`.
  */
 import { readFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import type { DB } from './index.ts';
 import { getDb } from './index.ts';
+import { dataFile } from '../lib/dataPath.ts';
 import type { Sticker } from '../types.ts';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
-/** Reads the generated catalog. Looks next to the source/compiled module. */
+/** Reads the generated catalog from the dataset directory (see dataPath.ts). */
 export function loadCatalog(): Sticker[] {
-  const path = resolve(__dirname, '../data/stickers.json');
-  return JSON.parse(readFileSync(path, 'utf8')) as Sticker[];
+  return JSON.parse(readFileSync(dataFile('stickers.json'), 'utf8')) as Sticker[];
 }
 
 export function seed(db: DB, catalog: Sticker[] = loadCatalog()): number {

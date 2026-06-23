@@ -1,0 +1,83 @@
+name: Release (Windows desktop)
+
+# Builds the standalone Windows app (NSIS installer + portable .exe) and, when
+# triggered by a version tag, attaches them to a draft GitHub Release.
+#
+# Code signing is optional and automatic: if the repo has WINDOWS_CERT_BASE64
+# (a base64-encoded .pfx) and WINDOWS_CERT_PASSWORD secrets, electron-builder
+# signs the binaries; otherwise it ships them unsigned (SmartScreen will warn on
+# first run). No code change is needed to switch later — just add the secrets.
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    name: Build Windows installer + portable
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install root deps (backend + frontend)
+        run: npm install
+
+      - name: Generate sticker dataset
+        run: npm run generate-dataset
+
+      - name: Build frontend (SPA)
+        run: npm run build --workspace=frontend
+
+      - name: Install desktop deps
+        working-directory: desktop
+        run: npm install
+
+      - name: Rebuild better-sqlite3 for Electron's ABI
+        working-directory: desktop
+        run: npm run rebuild
+
+      - name: Bundle desktop (icon + esbuild + resources)
+        working-directory: desktop
+        run: npm run build
+
+      - name: Package installer + portable (electron-builder)
+        working-directory: desktop
+        run: npx electron-builder --config electron-builder.yml --win --publish never
+        env:
+          # electron-builder signs only when CSC_LINK is non-empty. Leaving the
+          # secret unset = unsigned build (no failure).
+          CSC_LINK: ${{ secrets.WINDOWS_CERT_BASE64 }}
+          CSC_KEY_PASSWORD: ${{ secrets.WINDOWS_CERT_PASSWORD }}
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: stickerdex-windows
+          path: |
+            desktop/dist/*.exe
+            desktop/dist/*.blockmap
+            desktop/dist/latest.yml
+          if-no-files-found: error
+
+      - name: Attach to GitHub Release (tags only)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          draft: true
+          files: |
+            desktop/dist/StickerDex-Setup-*.exe
+            desktop/dist/StickerDex-*-portable.exe
+            desktop/dist/latest.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

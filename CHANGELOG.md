@@ -6,6 +6,27 @@ All notable changes to this project are documented here. The format is based on
 
 ## [Unreleased]
 
+### Added — Standalone Windows desktop app (Electron)
+- **One-click desktop build**: StickerDex now packages into a standalone Windows application via
+  a new `desktop/` Electron workspace — a hardened Chromium window wrapping the **same** Fastify
+  backend, embedded in-process and bound to `127.0.0.1` on an ephemeral port. The React SPA is
+  served from that origin, so the app runs with no Docker and no terminal. Released as an NSIS
+  **per-user installer** (`StickerDex-Setup-<ver>.exe`, no admin) plus a **portable** `.exe`.
+- **Your data lives in `%APPDATA%\StickerDex`** (collection DB + auto/manual backups + a random
+  cookie-signing secret) — writable, separate from the program, and untouched by upgrades/uninstall.
+  Open it from **File ▸ Open data folder**.
+- **Security-hardened shell**: `contextIsolation` + `sandbox` on, `nodeIntegration` off, a strict
+  CSP, navigation pinned to loopback (external links open in your real browser), a single-instance
+  lock, and a minimal read-only preload bridge. See [docs/DESKTOP.md](docs/DESKTOP.md).
+- **Plan B preserved**: all backend changes are additive and env-gated, so `npm run dev` and
+  `docker compose up` are unchanged. New optional `STICKERDEX_PUBLIC_DIR` lets the backend also
+  serve the built SPA on a single port (`@fastify/static`); `STICKERDEX_DATA_DIR` overrides the
+  dataset location for the bundled build. Both are no-ops when unset.
+- **Release pipeline**: `.github/workflows/release.yml` builds the installer + portable on a
+  Windows runner for every `v*` tag and attaches them to a draft Release. Code signing is automatic
+  *if* `WINDOWS_CERT_BASE64` / `WINDOWS_CERT_PASSWORD` secrets are present, otherwise unsigned.
+  Build/run/debug notes in [docs/DESKTOP_BUILD_LOG.md](docs/DESKTOP_BUILD_LOG.md).
+
 ### Added — Live results feed (auto-updating)
 - **Results refresh automatically at startup**: a new feed (`services/resultsFeed.ts`) pulls the
   latest played scores from the public [openfootball](https://github.com/openfootball/worldcup)

@@ -2,12 +2,9 @@
  * Read access to the sticker catalog (reference data) and derived team list.
  */
 import { readFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import type { DB } from '../db/index.ts';
+import { dataFile } from '../lib/dataPath.ts';
 import type { Sticker, Team } from '../types.ts';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
 
 interface StickerRow {
   code: string;
@@ -67,6 +64,5 @@ export function getAllStickers(db: DB): Sticker[] {
 
 /** Team metadata with colors, loaded from the generated teams.json. */
 export function getTeams(): Team[] {
-  const path = resolve(__dirname, '../data/teams.json');
-  return JSON.parse(readFileSync(path, 'utf8')) as Team[];
+  return JSON.parse(readFileSync(dataFile('teams.json'), 'utf8')) as Team[];
 }

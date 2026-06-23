@@ -6,15 +6,12 @@
  *   - results are INSERT OR IGNORE (so the user's edits are never clobbered).
  */
 import { readFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import type { DB } from './index.ts';
+import { dataFile } from '../lib/dataPath.ts';
 import type { Match, MatchTeam, MatchVenue } from '../types.ts';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
 function load<T>(file: string): T {
-  return JSON.parse(readFileSync(resolve(__dirname, '../data', file), 'utf8')) as T;
+  return JSON.parse(readFileSync(dataFile(file), 'utf8')) as T;
 }
 
 export interface TournamentData {

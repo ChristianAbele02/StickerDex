@@ -105,6 +105,23 @@ docker compose up -d --build
 
 Open **http://localhost:8080**. Your collection is persisted in the `stickerdex-data` Docker volume.
 
+## 🖥️ Desktop app (Windows)
+
+Prefer a double-click app with no Docker and no terminal? StickerDex ships as a **standalone
+Windows application** — the same backend + UI wrapped in a hardened Electron window, with your
+collection stored locally in `%APPDATA%\StickerDex`.
+
+- Download **`StickerDex-Setup-<version>.exe`** (per-user installer, no admin) or the
+  **portable `.exe`** from the [Releases page](https://github.com/ChristianAbele02/StickerDex/releases).
+- Or build it yourself: `npm install && npm run desktop:install && npm run dist:win`.
+
+Full architecture, security model, build/debug steps and troubleshooting are in
+**[docs/DESKTOP.md](docs/DESKTOP.md)**. The Docker and local-dev flows below remain fully
+supported as alternatives.
+
+> Until the binaries are code-signed, Windows SmartScreen warns about an *"unknown publisher"* on
+> first run — choose **More info ▸ Run anyway**. See [docs/DESKTOP.md](docs/DESKTOP.md#code-signing-optional).
+
 ## 🧑‍💻 Local development
 
 Requires **Node 20+**.

@@ -44,3 +44,22 @@ jobs:
         run: docker build -f backend/Dockerfile -t stickerdex-api .
       - name: Build web image
         run: docker build -f frontend/Dockerfile -t stickerdex-web .
+
+  desktop:
+    name: Desktop typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install root deps (backend types)
+        run: npm install
+      - name: Install desktop deps (skip native/electron download — types only)
+        working-directory: desktop
+        run: npm install --ignore-scripts
+      - name: Type-check Electron main/preload
+        working-directory: desktop
+        run: npm run typecheck

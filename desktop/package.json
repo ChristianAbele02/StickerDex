@@ -1,0 +1,37 @@
+{
+  "name": "@stickerdex/desktop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "StickerDex standalone Windows desktop app (Electron shell around the embedded Fastify server).",
+  "license": "MIT",
+  "author": "Christian Abele",
+  "main": "build/main.js",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "icon": "node scripts/make-icon.mjs",
+    "bundle": "node scripts/build.mjs",
+    "build": "npm run icon && npm run bundle",
+    "rebuild": "electron-rebuild -f -w better-sqlite3",
+    "start": "npm run build && npm run rebuild && electron .",
+    "dist": "npm run build && npm run rebuild && electron-builder --config electron-builder.yml --win",
+    "pack": "npm run build && npm run rebuild && electron-builder --config electron-builder.yml --win --dir"
+  },
+  "dependencies": {
+    "@fastify/cookie": "^9.3.1",
+    "@fastify/cors": "^9.0.1",
+    "@fastify/static": "^7.0.4",
+    "better-sqlite3": "^12.11.1",
+    "fastify": "^4.28.1"
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^4.0.4",
+    "@resvg/resvg-js": "^2.6.2",
+    "@types/better-sqlite3": "^7.6.11",
+    "@types/node": "^20.14.0",
+    "electron": "^42.4.1",
+    "electron-builder": "^26.15.3",
+    "esbuild": "^0.28.1",
+    "png-to-ico": "^3.0.1",
+    "typescript": "^5.5.4"
+  }
+}

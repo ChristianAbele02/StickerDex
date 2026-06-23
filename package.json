@@ -36,7 +36,12 @@
     "build": "npm run build --workspace=backend && npm run build --workspace=frontend",
     "test": "npm run test --workspace=backend && npm run test --workspace=frontend",
     "lint": "npm run lint --workspace=backend && npm run lint --workspace=frontend",
-    "generate-dataset": "npm run generate-dataset --workspace=backend"
+    "generate-dataset": "npm run generate-dataset --workspace=backend",
+    "desktop:install": "npm --prefix desktop install",
+    "desktop:typecheck": "npm --prefix desktop run typecheck",
+    "desktop:start": "npm run build --workspace=frontend && npm --prefix desktop run start",
+    "desktop:build": "npm run build --workspace=frontend && npm --prefix desktop run build",
+    "dist:win": "npm run build --workspace=frontend && npm --prefix desktop run dist"
   },
   "engines": {
     "node": ">=20"

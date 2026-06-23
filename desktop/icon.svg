@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!--
+    StickerDex desktop app icon (source of truth for resources/icon.ico).
+    A collectible foil sticker: navy brand tile, a white sticker card with a
+    peeling corner that reveals a gold-foil underside, a diagonal holographic
+    sheen, and the brand star (continuous with frontend/public/favicon.svg).
+    Richer than the 16px web favicon because app icons render up to 256px.
+  -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0e4a8f" />
+      <stop offset="0.55" stop-color="#0a3161" />
+      <stop offset="1" stop-color="#06203f" />
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#ffffff" />
+      <stop offset="1" stop-color="#e9f0fb" />
+    </linearGradient>
+    <linearGradient id="foil" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffe9a3" />
+      <stop offset="0.5" stop-color="#f4c33c" />
+      <stop offset="1" stop-color="#d99a2b" />
+    </linearGradient>
+    <linearGradient id="star" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd75e" />
+      <stop offset="1" stop-color="#f0aa1f" />
+    </linearGradient>
+    <radialGradient id="topglow" cx="0.3" cy="0.18" r="0.9">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.16" />
+      <stop offset="0.6" stop-color="#ffffff" stop-opacity="0" />
+    </radialGradient>
+    <clipPath id="cardClip">
+      <path d="M152 140 H360 a20 20 0 0 1 20 20 V322 L322 380 H172 a20 20 0 0 1 -20 -20 Z" />
+    </clipPath>
+  </defs>
+
+  <!-- Brand tile -->
+  <rect width="512" height="512" rx="116" fill="url(#bg)" />
+  <rect width="512" height="512" rx="116" fill="url(#topglow)" />
+
+  <!-- Soft shadow cast by the sticker card -->
+  <path d="M152 140 H360 a20 20 0 0 1 20 20 V322 L322 380 H172 a20 20 0 0 1 -20 -20 Z"
+        fill="#000000" opacity="0.22" transform="translate(6 12)" />
+
+  <!-- Sticker card body (peeled corner cut out at bottom-right) -->
+  <path d="M152 140 H360 a20 20 0 0 1 20 20 V322 L322 380 H172 a20 20 0 0 1 -20 -20 Z"
+        fill="url(#card)" />
+
+  <!-- Holographic foil sheen sweeping across the card -->
+  <g clip-path="url(#cardClip)">
+    <polygon points="120,140 188,140 300,380 232,380" fill="#ffffff" opacity="0.45" />
+    <polygon points="196,140 226,140 338,380 308,380" fill="#bcd6ff" opacity="0.35" />
+  </g>
+
+  <!-- Peeled corner: gold-foil underside of the lifted flap -->
+  <path d="M322 380 L380 322 L380 380 Z" fill="#0a3161" opacity="0.18" />
+  <path d="M322 380 Q352 372 372 352 Q392 332 392 308 L380 322 L322 380 Z"
+        fill="url(#foil)" />
+  <path d="M322 380 L380 322" stroke="#c98f24" stroke-width="3" fill="none" opacity="0.55" />
+
+  <!-- Brand star (same geometry as the web favicon, scaled & centered) -->
+  <g transform="translate(256 250) scale(6.0) translate(-32 -32)">
+    <path d="M32 16 l4.7 9.5 10.5 1.5 -7.6 7.4 1.8 10.4 -9.4-4.9 -9.4 4.9 1.8-10.4 -7.6-7.4 10.5-1.5z"
+          fill="url(#star)" stroke="#d9971a" stroke-width="0.6" stroke-linejoin="round" />
+  </g>
+</svg>
